@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker, declarative_base, scoped_session
 from sqlalchemy.exc import SQLAlchemyError
 from typing import Generator
-from src.infraestructure.adapters.data_sources.config.settings import get_settings
+from src.core.settings import get_settings
 from fastapi.logger import logger
 from contextlib import contextmanager
 
@@ -26,9 +26,6 @@ status_api = None  # ? Variable para almacenar el estado de la API.
 
 @contextmanager
 def get_db():
-    db = ScopedSession()
-    try:
-        yield db
     db = scoped_session()  # Crear la sesión de base de datos
     try:
         yield db  # Proporcionar la sesión para su uso
@@ -50,9 +47,9 @@ def startup():
     tables = inspector.get_table_names()
     if not tables:
         create_tables()
-    else:
-        drop_tables()
-        startup()
+    #else:
+    #    drop_tables()
+    #    startup()
     logger.info("API started 🆗")
     status_api = True
 
