@@ -1,0 +1,90 @@
+{
+    "careers": [
+      {
+        "code": "AR",
+        "name": "Arquitectura",
+        "description": "Formación en el diseño, planificación y construcción de espacios urbanos y edificaciones."
+      },
+      {
+        "code": "BI",
+        "name": "Biología",
+        "description": "Estudio de los seres vivos, su estructura, funciones, evolución y conservación del medio ambiente."
+      },
+      {
+        "code": "ANG",
+        "name": "Administración de Negocios Globales",
+        "description": "Desarrollo de competencias para la gestión y dirección de empresas en un contexto globalizado."
+      },
+      {
+        "code": "CF",
+        "name": "Contabilidad y Finanzas",
+        "description": "Formación en el manejo de sistemas contables y financieros, así como el análisis de estados financieros."
+      },
+      {
+        "code": "EC",
+        "name": "Economía",
+        "description": "Estudio de los recursos, la producción, distribución y consumo de bienes y servicios."
+      },
+      {
+        "code": "IC",
+        "name": "Ingeniería Civil",
+        "description": "Diseño, construcción y mantenimiento de infraestructuras como edificios, puentes y carreteras."
+      },
+      {
+        "code": "IE",
+        "name": "Ingeniería Electrónica",
+        "description": "Desarrollo de sistemas electrónicos, automatización y telecomunicaciones."
+      },
+      {
+        "code": "II",
+        "name": "Ingeniería Industrial",
+        "description": "Optimización de sistemas productivos y logísticos para mejorar la eficiencia en las empresas."
+      },
+      {
+        "code": "IF",
+        "name": "Ingeniería Informática",
+        "description": "Desarrollo de software, sistemas informáticos y soluciones tecnológicas para diferentes sectores."
+      },
+      {
+        "code": "IM",
+        "name": "Ingeniería Mecatrónica",
+        "description": "Integración de mecánica, electrónica y computación para el diseño de sistemas automatizados."
+      },
+      {
+        "code": "ED",
+        "name": "Educación",
+        "description": "Formación en pedagogía para la enseñanza en diferentes niveles educativos."
+      },
+      {
+        "code": "PS",
+        "name": "Psicología",
+        "description": "Estudio del comportamiento humano, los procesos mentales y su aplicación en diferentes contextos."
+      },
+      {
+        "code": "DE",
+        "name": "Derecho",
+        "description": "Formación en leyes y el sistema judicial, orientada a la práctica legal y asesoramiento jurídico."
+      },
+      {
+        "code": "TI",
+        "name": "Traducción e Interpretación",
+        "description": "Capacitación en la traducción e interpretación de textos y discursos en varios idiomas."
+      },
+      {
+        "code": "LI",
+        "name": "Lingüística",
+        "description": "Estudio científico del lenguaje, su estructura, evolución y uso en las sociedades."
+      },
+      {
+        "code": "MH",
+        "name": "Medicina Humana",
+        "description": "Formación integral en el diagnóstico, tratamiento y prevención de enfermedades en seres humanos."
+      },
+      {
+        "code": "OD",
+        "name": "Odontología",
+        "description": "Ciencia dedicada a la prevención, diagnóstico y tratamiento de enfermedades bucales y dentales."
+      }
+    ]
+  }
+  

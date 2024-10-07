@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, HTTPException, Depends, status, WebSocket
+from fastapi import FastAPI, Request, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -13,9 +13,7 @@ app = FastAPI(
     title=settings.APP_NAME,
     description=f"""
                 {settings.APP_NAME} ✅
-                Docs: <a href="/docs">/docs</a>
-                Redoc: <a href="/redoc">/redoc</a>
-
+                Estanteria Virtual
                 ### Features:
                 - Admin Panel
                 - 
@@ -51,3 +49,9 @@ async def health():
     if status_bool is True:
         return {"msg": "OK 🆗"}
     raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Service Offline 🔴")
+
+#! ROUTERS
+from src.api.routers import role, career
+
+app.include_router(role.rtr_role)
+app.include_router(career.rtr_career)

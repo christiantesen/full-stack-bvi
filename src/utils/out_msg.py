@@ -1,4 +1,4 @@
-from src.util.base import BaseResponse
+from src.utils.base import BaseResponse
 
 """
 200

@@ -3,8 +3,9 @@ from sqlalchemy.orm import sessionmaker, declarative_base, scoped_session
 from sqlalchemy.exc import SQLAlchemyError
 from typing import Generator
 from src.core.settings import get_settings
-from fastapi.logger import logger
-from contextlib import contextmanager
+from src.utils.logger import hyre
+from sqlalchemy.orm import Session
+import json
 
 settings = get_settings()
 
@@ -24,33 +25,33 @@ ScopedSession = scoped_session(SessionLocal)
 Base = declarative_base()
 status_api = None  # ? Variable para almacenar el estado de la API.
 
-@contextmanager
-def get_db():
-    db = scoped_session()  # Crear la sesión de base de datos
+def get_db() -> Generator:
+    db = ScopedSession()  # Crear la sesión de base de datos
     try:
         yield db  # Proporcionar la sesión para su uso
     except SQLAlchemyError as e:
         db.rollback()  # Deshacer cambios si ocurre un error
-        logger.exception(f"Database error occurred: {e}")  # Registrar con el stack trace
+        hyre.critical(f"Database error occurred: {e}")  # Registrar con el stack trace
         raise  # Re-lanzar la excepción para que sea manejada a nivel superior
     finally:
         db.close()  # Cerrar siempre la sesión
 
 
-def startup():
+async def startup():
     """
     Start the API
     """
     global status_api
-    logger.info("Loading API 🛑")
+    hyre.info("🛑 Loading API 🛑")
     inspector = inspect(engine)
     tables = inspector.get_table_names()
     if not tables:
         create_tables()
-    #else:
-    #    drop_tables()
-    #    startup()
-    logger.info("API started 🆗")
+    else:
+        drop_tables()
+        await startup()
+    await default_data()
+    hyre.success("🆗 API started 🆗")
     status_api = True
 
 
@@ -59,11 +60,11 @@ def shutdown():
     Shutdown the API
     """
     global status_api
-    logger.info("Closing API 🛑")
+    hyre.info("🛑 Closing API 🛑")
     if engine is not None:
         engine.dispose()
     status_api = False
-    logger.info("API closed 🆗")
+    hyre.info("🆗 API closed 🆗")
 
 
 def get_status_api():
@@ -101,12 +102,65 @@ def create_tables():
     Create the tables in the database
     """
     Base.metadata.create_all(bind=engine)
-    logger.info("Created tables ✅")
-
+    hyre.info("✅ Created tables ✅")
 
 def drop_tables():
     """
     Drop the tables in the database
     """
     Base.metadata.drop_all(bind=engine)
-    logger.info("Droped tables ✅")
+    hyre.info("✅ Droped tables ✅")
+
+
+
+async def default_data():
+    with ScopedSession() as db:
+        try:
+            insert_careers(db)
+            insert_roles(db)
+        except SQLAlchemyError as e:
+            hyre.critical(f"Database error occurred: {e}")
+            raise
+        
+def insert_careers(db: Session):
+    from src.core.models import career
+    
+    # Lee los datos del archivo JSON
+    try:
+        if db.query(career.Career).count() == 0:
+            with open('src/core/data/career.json', 'r') as file:
+                career_data = json.load(file)
+                insert_data(db, career.Career, career_data['careers'])
+    except FileNotFoundError:
+        hyre.critical("El archivo career.json no fue encontrado.")
+        raise
+    except json.JSONDecodeError as e:
+        hyre.critical(f"Error al decodificar el archivo JSON: {e}")
+        raise
+    
+def insert_roles(db: Session):
+    from src.core.models import role
+    
+    # Lee los datos del archivo JSON
+    try:
+        if db.query(role.Role).count() == 0:
+            with open('src/core/data/role.json', 'r') as file:
+                role_data = json.load(file)
+                insert_data(db, role.Role, role_data['roles'])
+    except FileNotFoundError:
+        hyre.critical("El archivo role.json no fue encontrado.")
+        raise
+    except json.JSONDecodeError as e:
+        hyre.critical(f"Error al decodificar el archivo JSON: {e}")
+        raise
+
+# Función para insertar datos en bloques
+def insert_data(db, model, data):
+    try:
+        db.bulk_insert_mappings(model, data)  # Inserta los datos en bloques
+        db.commit()  # Confirma la transacción
+        hyre.success("Datos insertados correctamente.")
+    except SQLAlchemyError as e:
+        db.rollback()  # En caso de error, deshace la transacción
+        hyre.critical(f"Database error occurred: {e}")
+        raise

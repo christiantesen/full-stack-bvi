@@ -1,0 +1,21 @@
+{
+    "roles": [
+      {
+        "name": "Público",
+        "description": "Usuarios generales que pueden acceder a información pública."
+      },
+      {
+        "name": "Alumno",
+        "description": "Estudiantes de la URP que pueden acceder a cursos y materiales de estudio."
+      },
+      {
+        "name": "Docente",
+        "description": "Profesores que pueden gestionar cursos, materiales y libros."
+      },
+      {
+        "name": "Administrativo",
+        "description": "Personal administrativo encargado de la gestión."
+      }
+    ]
+  }
+  

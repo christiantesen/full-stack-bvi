@@ -18,3 +18,7 @@ logger.add(sys.stdout, level="DEBUG", format=log_format)
 
 # Añadir un manejador para la salida de logs en un archivo con rotación
 logger.add("api.log", rotation="1 MB", level="INFO", format=log_format)
+
+hyre = logger
+
+MSG_INTERNAL_SERVER_ERROR = "🔴 Internal Server Error"
