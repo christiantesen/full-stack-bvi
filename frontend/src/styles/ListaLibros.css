@@ -1,0 +1,17 @@
+.lista-libros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .libro-card {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+  }
+  
+  .paginacion {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
