@@ -3,7 +3,6 @@ from pydantic import model_validator
 from typing import Any, Optional
 from fastapi import HTTPException, status
 from src.utils.characteres import FORBIDDEN_CHARS
-from datetime import datetime
 from src.utils.out_msg import MsgResponse
 
 class Career(BaseRequest):

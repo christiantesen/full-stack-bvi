@@ -5,7 +5,6 @@ from src.utils.logger import hyre, MSG_INTERNAL_SERVER_ERROR
 
 CACHE_ROLES = []
 
-
 def get_all(db):
     global CACHE_ROLES
     try:
@@ -79,9 +78,9 @@ def role_name_exists(db, name: str, id: int = None) -> bool:
         else:
             role = db.query(role_model).filter(role_model.name == name).first()
         if role:
-            hyre.success("Role name exists")
+            hyre.warning("Role name exists")
             return True
-        hyre.success("Role name does not exist")
+        hyre.info("Role name does not exist")
         return False
     except HTTPException as e:
         hyre.error(f"{e.detail}")

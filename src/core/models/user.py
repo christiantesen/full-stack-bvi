@@ -6,14 +6,17 @@ from src.utils.time_server import default_datetime
 class User(Base):
     __tablename__ = "users"
     
-    id: str = Column(String(15), primary_key=True, index=True, unique=True)
+    id: str = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    
+    username: str = Column(String(150), unique=True, index=True)
+    password: str = Column(String(150))
     
     full_name: str = Column(String(300)) # Nombre completo
     paternal_surname: str = Column(String(150)) # Apellido paterno
     maternal_surname: str = Column(String(150)) # Apellido materno
     email: str = Column(String(150), unique=True, index=True)
     phone: str = Column(String(15), unique=True, index=True)
-    password: str = Column(String(150))
+    
     
     career: int = Column(Integer) # Carrera
     

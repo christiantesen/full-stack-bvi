@@ -67,4 +67,12 @@ async def u(id: int, role: UpdateRole, db: Session = Depends(get_db)):
     Se actualiza un rol por su ID.
     """
     data = update(db, id, role)
+    data = RoleResponse(
+                id=data.id,
+                name=data.name,
+                description=data.description,
+                is_active=data.is_active,
+                created_at=data.created_at,
+                updated_at=data.updated_at
+            )
     return MsgRoleResponse(msg="✅ Rol actualizado exitosamente.", data=data)
