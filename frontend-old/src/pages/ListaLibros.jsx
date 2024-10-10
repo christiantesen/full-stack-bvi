@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import Libro from "../components/Libro";
 import Busqueda from "../components/Busqueda";
 import Paginacion from "../components/Paginacion";
@@ -8,6 +8,7 @@ import FiltroCarrera from "../components/FiltroCarrera";
 import FiltroCiclo from "../components/FiltroCiclo";
 import ModalEliminar from "../components/ModalEliminarLibro";
 import '../styles/ListaLibros.css'; // Asegúrate de tener el archivo CSS correctamente importado
+import MockAdapter from 'axios-mock-adapter';
 
 // Crear instancia del mock de Axios
 const mock = new MockAdapter(axios);

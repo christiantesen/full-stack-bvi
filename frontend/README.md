@@ -1,46 +1,94 @@
-# Getting Started with Create React App
+# [NextJS Tailwind Campaign Page](http://demos.creative-tim.com/nextjs-tailwind-campaign-page?ref=readme-ntpp) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/nextjs-tailwind-campaign-page&text=Check%20Material%20Tailwind%202%20Template%20made%20by%20@CreativeTim%20#webdesign%20#template%20#materialdesign%20#react%20https://www.creative-tim.com/product/nextjs-tailwind-campaign-page)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![version](https://img.shields.io/badge/version-1.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/nextjs-tailwind-campaign-page.svg)](https://github.com/creativetimofficial/nextjs-tailwind-campaign-page/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/nextjs-tailwind-campaign-page.svg)](https://github.com/creativetimofficial/nextjs-tailwind-campaign-page/issues?q=is%3Aissue+is%3Aclosed)
 
-## Available Scripts
+![Image](https://s3.amazonaws.com/creativetim_bucket/products/743/original/material-tailwind-react-campaign-template-thumbnail.jpg?1697631625)
 
-In the project directory, you can run:
+Introducing Tailwind Campaign Page, an all-inclusive and visually captivating campaign landing page template built on the foundation of Tailwind CSS and Material Tailwind.
 
-### `npm start`
+Are you searching for a meticulously designed and highly customizable campaign landing page template tailored for marketers, businesses, and organizations to create compelling and effective online campaign pages? Look no further! We are excited to present to you our Free Campaign Page Template, thoughtfully crafted to meet the needs of web developers like you.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This template, built with Tailwind CSS and Material Tailwind, offers seamless customization to perfectly match your campaign's branding. The free campaign template comes equipped with essential features such as header, product listing, categories, and testimonial section.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Documentation built by Developers**
 
-### `npm test`
+Each element is well presented in very complex documentation.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can read more about the [documentation here](https://www.material-tailwind.com/docs/react/installation).
 
-### `npm run build`
+**HELPFUL LINKS**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- View [Github Repository](https://github.com/creativetimofficial/nextjs-tailwind-campaign-page)
+- Check [FAQ Page](https://www.creative-tim.com/faq)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## [Demo](https://creative-tim.com/product/nextjs-tailwind-campaign-page)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Quick start
 
-### `npm run eject`
+Quick start options:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Download from [Creative Tim](https://www.creative-tim.com/product/nextjs-tailwind-campaign-page?ref=readme-ntpp).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Terminal Commands
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
+2. Navigate to the root ./ directory of the product and run `npm install` to install our local dependencies.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Documentation
 
-## Learn More
+The documentation for the Material Dashboard is hosted at our [website](https://www.material-tailwind.com/docs/react/installation?ref=readme-ntpp).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Browser Support
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+At present, we officially aim to support the last two versions of the following browsers:
+
+<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
+
+## Resources
+
+- [Live Preview](https://demos.creative-tim.com/nextjs-tailwind-campaign-page?ref=readme-ntpp)
+- [Download Page](https://www.creative-tim.com/product/nextjs-tailwind-campaign-page?ref=readme-ntpp)
+- Documentation is [here](https://www.material-tailwind.com/docs/react/installation?ref=readme-ntpp)
+- [License Agreement](https://www.creative-tim.com/license?ref=readme-ntpp)
+- [Support](https://www.creative-tim.com/contact-us?ref=readme-ntpp)
+- Issues: [Github Issues Page](https://github.com/creativetimofficial/nextjs-tailwind-campaign-page/issues)
+- [Nepcha Analytics](https://nepcha.com?ref=readme) - Analytics tool for your website
+
+## Reporting Issues
+
+We use GitHub Issues as the official bug tracker for the Nextjs Tailwind Campaign Page. Here are some advices for our users that want to report an issue:
+
+1. Make sure that you are using the latest version of the Nextjs Tailwind Campaign Page. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/product/nextjs-tailwind-campaign-page?ref=readme-ntpp).
+2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
+3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
+
+## Technical Support or Questions
+
+If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us?ref=readme-ntpp) instead of opening an issue.
+
+## Licensing
+
+- Copyright 2023 [Creative Tim](https://www.creative-tim.com?ref=readme-ntpp)
+- Creative Tim [license](https://www.creative-tim.com/license?ref=readme-ntpp)
+
+## Useful Links
+
+- [More products](https://www.creative-tim.com/templates?ref=readme-ntpp) from Creative Tim
+
+- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
+
+- [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-ntpp) from Creative Tim
+
+- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-ntpp) (earn money)
+
+##### Social Media
+
+Twitter: <https://twitter.com/CreativeTim>
+
+Facebook: <https://www.facebook.com/CreativeTim>
+
+Dribbble: <https://dribbble.com/creativetim>
+
+Google+: <https://plus.google.com/+CreativetimPage>
+
+Instagram: <https://instagram.com/creativetimofficial>

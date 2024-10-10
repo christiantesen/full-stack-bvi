@@ -46,22 +46,6 @@ mock.onPut(/\/api\/libros\/\d+/).reply(200, {
   message: 'Libro actualizado correctamente (fake)',
 });
 
-interface Libro {
-  _id: string;
-  carrera: string;
-  plan: string;
-  ciclo: string;
-  curso: string;
-  autor: string;
-  titulo: string;
-  lugar: string;
-  tipo: string;
-  categoria: string;
-  enlace: string;
-  portada: string;
-  sugeridoPorProfesor: string;
-}
-
 const CrearLibro: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Check this line for correct TypeScript syntax
   const navigate = useNavigate();

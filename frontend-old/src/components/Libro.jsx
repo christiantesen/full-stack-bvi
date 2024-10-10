@@ -8,7 +8,6 @@ import { Button, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import MockAdapter from 'axios-mock-adapter';
 
-const cardColor = colorMapping[libro.carrera] || "light";
 // Creamos una instancia del mock adapter y la asociamos con axios
 const mock = new MockAdapter(axios);
 // Definimos las respuestas simuladas para las rutas
@@ -30,6 +29,8 @@ const Libro = ({ libro, usuario, handleMostrarModal }) => {
         "MECATRÓNICA": "danger",
         "ELECTRÓNICA": "secondary",
     };
+
+    const cardColor = colorMapping[libro.carrera] || "light";
 
     // Función para añadir a favoritos
     const handleAñadirFavorito = async (libroId) => {

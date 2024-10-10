@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ const Login = ({ setLoggedInUser }) => {
   const navigate = useNavigate();
 
    // Simulación de las respuestas del API
-   useEffect(() => {
+  useEffect(() => {
     mock.onPost('http://localhost:4000/api/usuarios/login').reply(200, {
       token: 'fake_token',
       usuario: {
