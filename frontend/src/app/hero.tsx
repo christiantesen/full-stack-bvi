@@ -36,6 +36,7 @@ function Hero() {
         </div>
         <div className="mt-40 grid gap-6 lg:mt-0">
           <div className="grid grid-cols-4 gap-6">
+            // Poner las imagenes de los libros
             <Image
               width={768}
               height={768}
