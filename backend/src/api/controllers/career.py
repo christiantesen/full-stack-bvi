@@ -7,6 +7,7 @@ CACHE_CAREERS = []
 
 def get_all(db):
     global CACHE_CAREERS
+    errors = []
     try:
         # Si no hay carreras en caché, se consultan de la base de datos
         if not CACHE_CAREERS:
@@ -19,16 +20,19 @@ def get_all(db):
         raise e
     except Exception as e:
         hyre.critical(f"{str(e)}")
+        errors.append("No se pudieron obtener las carreras.")
+        errors.append(str(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "msg": MSG_INTERNAL_SERVER_ERROR,
-                "errors": []
+                "errors": errors
             }
         )
         
 def get_by_id(db, id: int):
     global CACHE_CAREERS
+    errors = []
     # Si cache_careers está vacío, se consultan todas las carreras
     if not CACHE_CAREERS:
         get_all(db)
@@ -45,8 +49,8 @@ def get_by_id(db, id: int):
                 status_code=status.HTTP_404_NOT_FOUND, 
                 detail=
                 {
-                    "msg": "🔴 Carrera no encontrada.",
-                    "errors": []
+                    "msg": "🟠 Carrera no encontrada.",
+                    "errors": ["La carrera solicitada no existe."]
                 }
             )
         # Agregar la nueva carrera a la caché
@@ -59,15 +63,18 @@ def get_by_id(db, id: int):
         raise e
     except Exception as e:
         hyre.critical(f"{str(e)}")
+        errors.append("No se pudo obtener la carrera.")
+        errors.append(str(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "msg": MSG_INTERNAL_SERVER_ERROR,
-                "errors": []
+                "errors": errors
             }
         )
         
 def career_code_exists(db, code: str, id: int = None) -> bool:
+    errors = []
     try:
         career = None
         if id:
@@ -84,11 +91,13 @@ def career_code_exists(db, code: str, id: int = None) -> bool:
         raise e
     except Exception as e:
         hyre.critical(f"{str(e)}")
+        errors.append("No se pudo verificar si el código de la carrera existe.")
+        errors.append(str(e))
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "msg": MSG_INTERNAL_SERVER_ERROR,
-                "errors": []
+                "errors": errors
             }
         )
         

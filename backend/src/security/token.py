@@ -50,17 +50,17 @@ def generate_token(id, db: Session):
     current_time = default_datetime()
     
     user_token = next((token for token in CACHE_TOKENS if token.user_id == id), None)
-    exit_token = True
+    exists_token = True
     if user_token is None:
         user_token = db.query(token_model).filter(token_model.user_id == id).first()
-        exit_token = False
+        exists_token = False
     
     # Si el token ya existe y no ha expirado, se retorna
     if user_token:
         if user_token.expires_at > current_time:
-            if not exit_token:
+            if not exists_token:
                 CACHE_TOKENS.append(user_token)
-            return degenerate_token(user_token.access_token, db)
+            return degenerate_token(user_token.access_token, db, True)
         hyre.warning("Token expired for user with id: {id}").format(id=id)
         db.delete(user_token)
         db.commit()
@@ -124,13 +124,22 @@ def generate_token(id, db: Session):
     
     return access_token, refresh_token, rt_expires.seconds
 
-def degenerate_token(access_token: str, db: Session):
+def degenerate_token(access_token: str, db: Session, exists: bool = False):
     """
     Elimina un token de la base de datos
     
     args:
         token: str -> token a eliminar
         db: Session -> conexión a la base de datos
+        exists: bool -> indica si el token valido ya existe en la base de datos
+        
+    returns:
+        [True]
+            access_token: str -> token de acceso
+            refresh_token: str -> token de refresco
+            expires_in: int -> tiempo de expiración del token
+        [False]
+            user_id: int -> id del usuario
     """
     
     # Decodificamos el payload del token
@@ -144,9 +153,9 @@ def degenerate_token(access_token: str, db: Session):
     if not payload:
         hyre.error("Invalid token provided")
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_403_FORBIDDEN,
             detail={
-                "msg": "Vuelve a iniciar sesión.",
+                "msg": "🔴 Vuelve a iniciar sesión.",
                 "errors": [
                     "El token proporcionado no es válido."
                 ]
@@ -158,9 +167,9 @@ def degenerate_token(access_token: str, db: Session):
     if type != TYPES_TOKEN[0]:
         hyre.error("Invalid token type")
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_403_FORBIDDEN,
             detail={
-                "msg": "Vuelve a iniciar sesión.",
+                "msg": "🔴 Vuelve a iniciar sesión.",
                 "errors": [
                     "El token proporcionado no corresponde a un token de acceso."
                 ]
@@ -173,13 +182,14 @@ def degenerate_token(access_token: str, db: Session):
     
     # Buscamos el token en el cache
     data_token = next((token for token in CACHE_TOKENS if token.user_id == user_id and token.access_token == access_token), None)
-    exit_token = True
+
     if data_token is None:
         data_token = db.query(token_model).filter(
             token_model.user_id == user_id,
             token_model.access_token == access_token
         ).first()
-        exit_token = False
+        if data_token is not None:
+            CACHE_TOKENS.append(data_token)
         
     # Si el token no existe, retornamos
     if not data_token:
@@ -187,7 +197,7 @@ def degenerate_token(access_token: str, db: Session):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail={
-                "msg": "Vuelve a iniciar sesión.",
+                "msg": "🔴 Vuelve a iniciar sesión.",
                 "errors": [
                     "El token proporcionado no existe."
                 ]
@@ -208,7 +218,7 @@ def degenerate_token(access_token: str, db: Session):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail={
-                "msg": "Vuelve a iniciar sesión.",
+                "msg": "🔴 Vuelve a iniciar sesión.",
                 "errors": [
                     "El token proporcionado ha expirado."
                 ]
@@ -218,4 +228,4 @@ def degenerate_token(access_token: str, db: Session):
         
     hyre.success("Token deaccess generated for user {id}").format(id=user_id)
     
-    return access_token, data_token.refresh_token, expires_in_seconds
+    return access_token, data_token.refresh_token, expires_in_seconds if exists else user_id

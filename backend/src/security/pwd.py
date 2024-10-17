@@ -15,19 +15,18 @@ def verify_password(plain_password, hashed_password) -> bool:  # ? Validado
     return pwd_context.verify(plain_password, hashed_password)
 
 def is_password_strong_enough(password: str) -> Tuple[bool, str]:  # ? Validado
-    if len(password) < 8:
-        return False, "La contraseña debe tener al menos 8 caracteres."
-    if len(password) > 15:
-        return False, "La contraseña no debe tener más de 15 caracteres."
+    errors = []
+    if len(password) < 8 or len(password) > 15:
+        errors.append("La contraseña debe tener entre 8 y 15 caracteres.")
     if not any(char.isupper() for char in password):
-        return False, "La contraseña debe tener al menos una letra mayúscula."
+        errors.append("La contraseña debe tener al menos una letra mayúscula.")
     if not any(char.islower() for char in password):
-        return False, "La contraseña debe tener al menos una letra minúscula."
+        errors.append("La contraseña debe tener al menos una letra minúscula.")
     if not any(char.isdigit() for char in password):
-        return False, "La contraseña debe tener al menos un número."
+        errors.append("La contraseña debe tener al menos un número.")
     if not any(char in SPECIAL_CHARACTERS for char in password):
-        return False, "La contraseña debe tener al menos un caracter '@', '#', '$','.'."
-    return True, ""
+        errors.append("La contraseña debe tener al menos un caracter '@', '#', '$','.' y '/'.")
+    return True if not errors else False, errors
 
 def generate_password():  # ? Validado
     """
@@ -38,7 +37,7 @@ def generate_password():  # ? Validado
     - At least one special character
     - Length between 8 and 15 characters
     """
-    chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%=:?./|~>"
+    chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$./"
     while True:
         password_length = randint(8, 15)
         new_pass = ''.join(choice(chars) for _ in range(password_length))
