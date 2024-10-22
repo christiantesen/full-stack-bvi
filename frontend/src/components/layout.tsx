@@ -1,10 +1,16 @@
-"use client";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Navbar from './Navbar';
 
-import React from "react";
-import { ThemeProvider } from "@material-tailwind/react";
-
-export function Layout({ children }: { children: React.ReactNode }) {
-  return <ThemeProvider>{children}</ThemeProvider>;
-}
+const Layout: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <main className="container mx-auto px-4 py-8">
+        <Outlet />
+      </main>
+    </div>
+  );
+};
 
 export default Layout;
