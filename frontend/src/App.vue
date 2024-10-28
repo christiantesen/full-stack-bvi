@@ -1,12 +1,16 @@
+<script setup lang="ts">
+import NotificationList from '@/components/common/NotificationList.vue';
+</script>
+
 <template>
-  <div class="min-h-screen bg-gray-100">
-    <Navbar />
-    <main class="container mx-auto px-4 py-8">
-      <router-view></router-view>
-    </main>
+  <div id="app">
+    <NotificationList />
+    <router-view></router-view>
   </div>
 </template>
 
-<script lang="ts" setup>
-import Navbar from './components/Navbar.vue';
-</script>
+<style lang="scss">
+#app {
+  min-height: 100vh;
+}
+</style>

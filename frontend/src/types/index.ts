@@ -1,41 +1,20 @@
+// Global type definitions
 export interface User {
   id: string;
-  name: string;
   email: string;
-  role: 'student' | 'public' | 'teacher' | 'admin';
+  name: string;
+  role: UserRole;
 }
 
-export interface Publication {
-  id: string;
-  title: string;
-  description: string;
-  author: string;
-  year: number;
-  course: string;
-  category: string;
-  pdfUrl: string;
-  recommendedBy: string[];
-  rating: number;
+export enum UserRole {
+  ADMIN = 'admin',
+  USER = 'user'
 }
 
-export interface Rating {
-  publicationId: string;
-  userId: string;
-  value: number;
+export interface ApiResponse<T> {
+  data: T;
+  message: string;
+  status: number;
 }
 
-export interface Favorite {
-  publicationId: string;
-  userId: string;
-}
-
-export interface ReadLater {
-  publicationId: string;
-  userId: string;
-}
-
-export interface Report {
-  publicationId: string;
-  userId: string;
-  reason: string;
-}
+// Add more interfaces and types as needed
