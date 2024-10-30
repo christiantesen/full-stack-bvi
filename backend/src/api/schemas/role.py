@@ -1,13 +1,13 @@
-from src.utils.base import BaseRequest, BaseResponse
 from pydantic import model_validator
 from typing import Any, Optional
 from fastapi import HTTPException, status
-from src.utils.characteres import FORBIDDEN_CHARS
 from datetime import datetime
-from src.utils.out_msg import MsgResponse
 
+from . import base_model_config
+from . import msg_response
+from . import char_validator
 
-class Role(BaseRequest):
+class Role(base_model_config.BaseRequest):
     name: str
     description: str
 
@@ -30,7 +30,7 @@ class Role(BaseRequest):
         # Filtrar caracteres no permitidos en la descripción si no está vacía
         if description:
             chars_not_permitted = [
-                char for char in description if char in FORBIDDEN_CHARS]
+                char for char in description if char in char_validator.FORBIDDEN_CHARS]
             chars_not_permitted = list(set(chars_not_permitted))
             if chars_not_permitted:
                 errors.append("Los siguientes caracteres no están permitidos en la descripción: {x}".format(
@@ -74,7 +74,7 @@ class UpdateRole(Role):
         }
 
 
-class RoleResponse(BaseResponse):
+class RoleResponse(base_model_config.BaseResponse):
     id: int
     name: str
     description: str
@@ -95,7 +95,7 @@ class RoleResponse(BaseResponse):
         }
 
 
-class MsgRoleResponse(MsgResponse):
+class MsgRoleResponse(msg_response):
     data: RoleResponse
 
     class Config:

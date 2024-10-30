@@ -1,9 +1,10 @@
-from src.core.connection import Base
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text
 from datetime import datetime
-from src.utils.time_server import default_datetime
 
-class Module(Base):
+from . import db_manager
+from . import dt_utils
+
+class Module(db_manager.Base):
     
     __tablename__ = "modules"
     
@@ -14,6 +15,6 @@ class Module(Base):
     
     is_active: bool = Column(Boolean, default=True)
     
-    created_at: datetime = Column(DateTime, default=default_datetime)
+    created_at: datetime = Column(DateTime, default=dt_utils.default_datetime())
     updated_at: datetime = Column(DateTime, nullable=True,
-                        default=None, onupdate=default_datetime)
+                        default=None, onupdate=dt_utils.default_datetime())

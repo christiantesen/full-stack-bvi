@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, Boolean, String, Text
-from src.core.connection import Base
+from sqlalchemy import Column, Integer, String, Boolean, Text
+from sqlalchemy.orm import relationship, mapped_column
 
-class Career(Base):
+from . import db_manager
+
+class Career(db_manager.Base):
 
     __tablename__ = "careers"
     
@@ -16,3 +18,5 @@ class Career(Base):
     url_web: str = Column(String(300), nullable=True)
     
     is_active: bool = Column(Boolean, default=True)
+    
+    users = relationship("User", back_populates="career")

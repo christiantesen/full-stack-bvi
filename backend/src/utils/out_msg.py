@@ -1,4 +1,4 @@
-from src.utils.base import BaseResponse
+from . import BaseModelConfig
 
 """
 200
@@ -67,7 +67,7 @@ Se ha producido un error interno general en el servidor.
 """
 
 
-class MsgResponse(BaseResponse):
+class MsgResponse(BaseModelConfig.BaseResponse):
     msg: str
 
     class Config:

@@ -1,8 +1,9 @@
-from src.core.connection import Base
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship, mapped_column
 
-class RolePermission(Base):
+from . import db_manager
+
+class RolePermission(db_manager.Base):
     
     __tablename__ = "role_permissions"
     
