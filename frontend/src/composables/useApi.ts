@@ -1,6 +1,6 @@
 import { ref } from 'vue';
-import apiClient from '@/services/api';
-import type { ApiResponse } from '@/types';
+import apiClient from '../services/api/client';
+import type { ApiResponse } from '../types/user';
 
 export function useApi<T>() {
   const data = ref<T | null>(null);

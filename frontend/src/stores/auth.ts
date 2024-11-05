@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { User } from '@/types';
-import apiClient from '@/services/api';
-import { ENDPOINTS } from '@/config/api.config';
+import { User } from '../types/user';
+import apiClient from '../services/api/client';
+import { ENDPOINTS } from '../config/api.config';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -18,6 +18,9 @@ export const useAuthStore = defineStore('auth', {
       } catch (error) {
         // Handle error
       }
+    },
+    async logout() {
+      // Handle logout logic
     }
     // Add more auth actions
   }

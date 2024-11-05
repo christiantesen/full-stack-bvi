@@ -1,4 +1,5 @@
-import { useNotification } from '@/composables/useNotification';
+import { useNotification } from '../composables/useNotification';
+import { useAuthStore } from '../stores/auth';
 
 interface ApiError {
   response?: {
