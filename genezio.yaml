@@ -3,7 +3,6 @@ frontend:
     publish: dist
     scripts:
         deploy:
-            - cd frontend
             - npm install --legacy-peer-deps
             - npm run build
     subdomain: bvi-estanteria
