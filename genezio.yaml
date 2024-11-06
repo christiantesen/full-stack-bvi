@@ -7,6 +7,7 @@ frontend:
             - npm install --legacy-peer-deps
             - npm run build
         subdomain: bvi-estanteria
+    subdomain: bvi-estanteria
 name: bvi-estanteria
 region: us-east-1
 yamlVersion: 2
