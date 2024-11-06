@@ -2,7 +2,7 @@
   <footer class="relative bg-blueGray-200 pt-8 pb-6">
     <div
       class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-      style="transform: translateZ(0);"
+      style="transform: translateZ(0)"
     >
       <svg
         class="absolute bottom-0 overflow-hidden"
@@ -59,39 +59,34 @@
               <span
                 class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
               >
-                Useful Links
+                Links
               </span>
               <ul class="list-unstyled">
                 <li>
                   <a
                     class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://www.creative-tim.com/presentation?ref=vn-footer"
-                  >
-                    About Us
+                    href="https://www.urp.edu.pe/pregrado/facultad-de-ingenieria/bvi/nosotros/"
+                    target="_blank"                  
+                    >
+                    Sobre Nosotros
                   </a>
                 </li>
                 <li>
                   <a
                     class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://blog.creative-tim.com?ref=vn-footer"
-                  >
-                    Blog
+                    href="https://www.urp.edu.pe/pregrado/facultad-de-ingenieria/bvi/boletines-virtuales/"
+                    target="_blank"
+                    >
+                    Boletines Virtuales
                   </a>
                 </li>
                 <li>
                   <a
                     class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://www.github.com/creativetimofficial?ref=vn-footer"
+                    href="https://test.urp.edu.pe/Intranet/"
+                    target="_blank"
                   >
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://www.creative-tim.com/bootstrap-themes/free?ref=vn-footer"
-                  >
-                    Free Products
+                  Aula Virtual
                   </a>
                 </li>
               </ul>
@@ -100,7 +95,7 @@
               <span
                 class="block uppercase text-blueGray-500 text-sm font-semibold mb-2"
               >
-                Other Resources
+                Otros Recursos
               </span>
               <ul class="list-unstyled">
                 <li>

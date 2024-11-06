@@ -75,28 +75,35 @@
 </template>
 
 <script>
-import IndexDropdown from "@/components/Dropdowns/IndexDropdown.vue";
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-
-const router = useRouter();
+import IndexDropdown from "@/components/Dropdowns/IndexDropdown.vue";
 
 export default {
-  data() {
-    return {
-      navbarOpen: false,
-    };
-  },
-  methods: {
-    setNavbarOpen: function () {
-      this.navbarOpen = !this.navbarOpen;
-    },
-    redirectToLogin: function () {
-      // Validate if the user is already logged in
-      router.push('/auth/login');
-    },
-  },
   components: {
     IndexDropdown,
+  },
+  setup() {
+    const router = useRouter(); // Usamos useRouter dentro de setup
+    const navbarOpen = ref(false); // Usamos `ref` para manejar estado reactivo
+
+    // Método para alternar la visibilidad del navbar
+    const setNavbarOpen = () => {
+      navbarOpen.value = !navbarOpen.value;
+    };
+
+    // Método para redirigir al login
+    const redirectToLogin = () => {
+      console.log('Redirecting to login');
+      router.push('/auth/login'); // Usamos router.push directamente
+    };
+
+    // Retornamos las propiedades y métodos para usarlos en la plantilla
+    return {
+      navbarOpen,
+      setNavbarOpen,
+      redirectToLogin,
+    };
   },
 };
 </script>
