@@ -1,11 +1,16 @@
 frontend:
-    path: .
-    publish: dist
-    scripts:
-        deploy:
-            - npm install
-            - npm run build
-    subdomain: vue-notus
+  # Especifica la nueva ruta donde está ubicado el código del frontend.
+  path: ./frontend
+  # Especifica la carpeta de construcción (dist) que se encuentra dentro de `frontend`.
+  publish: frontend/dist
+  # Los scripts también deben ejecutarse en la carpeta `frontend`.
+  scripts:
+    # El comando para construir el proyecto de frontend.
+    deploy:
+      - cd frontend
+      - npm install --legacy-peer-deps
+      - npm run build
+    subdomain: bvi-estanteria
 name: bvi-estanteria
 region: us-east-1
 yamlVersion: 2
