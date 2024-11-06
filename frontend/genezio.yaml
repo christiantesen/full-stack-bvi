@@ -3,9 +3,9 @@ frontend:
     publish: dist
     scripts:
         deploy:
-            - npm install --legacy-peer-deps
+            - npm install
             - npm run build
     subdomain: vue-notus
-name: vue-notus
+name: bvi-estanteria
 region: us-east-1
 yamlVersion: 2
