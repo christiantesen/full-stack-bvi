@@ -22,34 +22,46 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap text-center lg:text-left">
         <div class="w-full lg:w-6/12 px-4">
-          <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
+          <h4 class="text-3xl font-semibold">Sigamos en contacto!</h4>
           <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
-            Find us on any of these platforms, we respond 1-2 business days.
+            Encuéntranos en cualquiera de estas plataformas, respondemos 1-2
+            días hábiles.
           </h5>
           <div class="mt-6 lg:mb-0 mb-6">
             <button
+              onclick="window.open('https://x.com/bviurp', '_blank')"
               class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-twitter"></i>
             </button>
             <button
+              onclick="window.open('https://www.facebook.com/bibliotecavirtualing/', '_blank')"
               class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
               <i class="fab fa-facebook-square"></i>
             </button>
             <button
+              onclick="window.open('https://www.youtube.com/@bviurp', '_blank')"
               class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
-              <i class="fab fa-dribbble"></i>
+              <i class="fab fa-youtube"></i>
             </button>
             <button
+              onclick="window.open('https://api.whatsapp.com/send?phone=51968078224&text=Hola!%20Tengo%20una%20Consulta!%20%F0%9F%99%8B', '_blank')"
               class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
               type="button"
             >
-              <i class="fab fa-github"></i>
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button
+              onclick="window.open('https://www.linkedin.com/in/biblioteca-virtual-de-ingenier%C3%ADa-urp-06a414213/', '_blank')"
+              class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              type="button"
+            >
+              <i class="fab fa-linkedin"></i>
             </button>
           </div>
         </div>
@@ -66,8 +78,8 @@
                   <a
                     class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                     href="https://www.urp.edu.pe/pregrado/facultad-de-ingenieria/bvi/nosotros/"
-                    target="_blank"                  
-                    >
+                    target="_blank"
+                  >
                     Sobre Nosotros
                   </a>
                 </li>
@@ -76,7 +88,7 @@
                     class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                     href="https://www.urp.edu.pe/pregrado/facultad-de-ingenieria/bvi/boletines-virtuales/"
                     target="_blank"
-                    >
+                  >
                     Boletines Virtuales
                   </a>
                 </li>
@@ -86,7 +98,7 @@
                     href="https://test.urp.edu.pe/Intranet/"
                     target="_blank"
                   >
-                  Aula Virtual
+                    Aula Virtual
                   </a>
                 </li>
               </ul>
@@ -101,33 +113,10 @@
                 <li>
                   <a
                     class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://github.com/creativetimofficial/vue-notus/blob/main/LICENSE.md?ref=vn-footer"
+                    href="https://www.urp.edu.pe/bvi"
+                    target="_blank"
                   >
-                    MIT License
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/terms?ref=vn-footer"
-                  >
-                    Terms & Conditions
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/privacy?ref=vn-footer"
-                  >
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/contact-us?ref=vn-footer"
-                  >
-                    Contact Us
+                    BVI
                   </a>
                 </li>
               </ul>
@@ -141,14 +130,16 @@
       >
         <div class="w-full md:w-4/12 px-4 mx-auto text-center">
           <div class="text-sm text-blueGray-500 font-semibold py-1">
-            Copyright © {{ date }} Vue Notus by
             <a
-              href="https://www.creative-tim.com?ref=vn-footer"
+              href="https://www.urp.edu.pe/"
+              target="_blank"
               class="text-blueGray-500 hover:text-blueGray-800"
             >
-              Creative Tim
+              Universidad Ricardo Palma
             </a>
-            .
+          </div>
+          <div class="text-sm text-blueGray-500 font-semibold py-1">
+            Copyright © {{ date }} | Todos los derechos reservados.
           </div>
         </div>
       </div>
