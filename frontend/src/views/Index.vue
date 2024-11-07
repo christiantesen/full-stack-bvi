@@ -8,7 +8,7 @@
         <div class="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
           <div class="pt-32 sm:pt-0">
             <h2 class="font-semibold text-4xl text-blueGray-600">
-              Estantería Virtual de la Biblioteca Virtual de Ingeniería
+              Biblioteca Virtual de Ingeniería - URP
             </h2>
             <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
               Es un proyecto de la
@@ -24,18 +24,16 @@
             </p>
             <div class="mt-12">
               <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus?ref=vn-index"
-                target="_blank"
+                href="/register"
                 class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
               >
                 REGISTRARSE
               </a>
               <a
-                href="https://github.com/creativetimofficial/vue-notus?ref=vn-index"
+                href="/catalog"
                 class="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                target="_blank"
               >
-                LANDING
+                VER CATÁLOGO
               </a>
             </div>
           </div>
@@ -47,6 +45,14 @@
         :src="patternVue"
         alt="..."
       />
+    </section>
+
+    <section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
+      <div class="container mx-auto">
+        <!-- Search bar 
+        <search-bar class="mb-16" />
+        <engineering-categories />-->
+      </div>
     </section>
 
     <section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
