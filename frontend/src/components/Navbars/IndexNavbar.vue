@@ -40,18 +40,20 @@
         :class="[navbarOpen ? 'block' : 'hidden']"
         id="example-navbar-warning"
       >
-        <!-- BUSCADOR -->
-        <div class="lg:flex flex-grow items-center">
-          <div
-            class="relative flex w-full sm:w-7/12 md:w-5/12 px-4 flex-wrap items-stretch lg:ml-auto"
+        <!-- INICIO BUSCADOR -->
+        <div class="lg:flex flex-grow items-stretch">
+          <span
+            class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"
           >
-            <input
-              type="text"
-              class="px-2 py-1 h-8 border border-solid border-emerald-600 rounded-full text-sm leading-snug text-emerald-700 bg-emerald-100 shadow-none outline-none focus:outline-none w-full font-normal rounded-l-none flex-1 border-l-0 placeholder-emerald-300"
-              placeholder="🔍 Buscar..."
-            />
-          </div>
+            <i class="fas fa-search"></i>
+          </span>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pl-10"
+          />
         </div>
+        <!-- FIN BUSCADOR -->
         <!-- ITEMS -->
         <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
           <!-- MENU -->
@@ -75,8 +77,8 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import IndexDropdown from "@/components/Dropdowns/IndexDropdown.vue";
 
 export default {
@@ -94,8 +96,8 @@ export default {
 
     // Método para redirigir al login
     const redirectToLogin = () => {
-      console.log('Redirecting to login');
-      router.push('/auth/login'); // Usamos router.push directamente
+      console.log("Redirecting to login");
+      router.push("/auth/login"); // Usamos router.push directamente
     };
 
     // Retornamos las propiedades y métodos para usarlos en la plantilla

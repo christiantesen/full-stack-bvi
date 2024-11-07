@@ -19,8 +19,8 @@
               >
                 Universidad Ricardo Palma
               </a>
-              . Encontrarás libros de todas las especialidades de la ingeniería y
-              ciencias básicas. ¡Disfruta de la lectura!
+              . Encontrarás libros de todas las especialidades de la ingeniería
+              y ciencias básicas. ¡Disfruta de la lectura!
             </p>
             <div class="mt-12">
               <a
@@ -47,15 +47,7 @@
       />
     </section>
 
-    <section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
-      <div class="container mx-auto">
-        <!-- Search bar 
-        <search-bar class="mb-16" />
-        <engineering-categories />-->
-      </div>
-    </section>
-
-    <section class="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
+    <section class="mt-48 md:mt-64 pb-40 relative bg-blueGray-100">
       <div
         class="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
         style="transform: translateZ(0)"
@@ -182,113 +174,6 @@
       </div>
 
       <div class="container mx-auto overflow-hidden pb-20">
-        <div class="flex flex-wrap items-center">
-          <div class="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
-            <div
-              class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
-            >
-              <i class="fas fa-sitemap text-xl"></i>
-            </div>
-            <h3 class="text-3xl mb-2 font-semibold leading-normal">
-              CSS Components
-            </h3>
-            <p
-              class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600"
-            >
-              Every element that you need in a product comes built in as a
-              component. All components fit perfectly with each other and can
-              have different colours.
-            </p>
-            <div class="block pb-6">
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Buttons
-              </span>
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Inputs
-              </span>
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Labels
-              </span>
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Menus
-              </span>
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Navbars
-              </span>
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Pagination
-              </span>
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Progressbars
-              </span>
-              <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-white uppercase last:mr-0 mr-2 mt-2"
-              >
-                Typography
-              </span>
-            </div>
-            <a
-              href="https://www.creative-tim.com/learning-lab/tailwind/vue/alerts/notus?ref=vn-index"
-              target="_blank"
-              class="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
-            >
-              View All
-              <i class="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-            </a>
-          </div>
-
-          <div class="w-full md:w-5/12 px-4 mr-auto ml-auto mt-32">
-            <div
-              class="relative flex flex-col min-w-0 w-full mb-6 mt-48 md:mt-0"
-            >
-              <img
-                alt="..."
-                :src="componentBtn"
-                class="w-full align-middle rounded absolute shadow-lg max-w-100-px left-145-px -top-29-px z-3"
-              />
-              <img
-                alt="..."
-                :src="componentProfileCard"
-                class="w-full align-middle rounded-lg absolute shadow-lg max-w-210-px left-260-px -top-160-px"
-              />
-              <img
-                alt="..."
-                :src="componentInfoCard"
-                class="w-full align-middle rounded-lg absolute shadow-lg max-w-180-px left-40-px -top-225-px z-2"
-              />
-              <img
-                alt="..."
-                :src="componentInfo2"
-                class="w-full align-middle rounded-lg absolute shadow-2xl max-w-200-px -left-50-px top-25-px"
-              />
-              <img
-                alt="..."
-                :src="componentMenu"
-                class="w-full align-middle rounded absolute shadow-lg max-w-580-px -left-20-px top-210-px"
-              />
-              <img
-                alt="..."
-                :src="componentBtnPink"
-                class="w-full align-middle rounded absolute shadow-xl max-w-120-px left-195-px top-95-px"
-              />
-            </div>
-          </div>
-        </div>
-
         <div class="flex flex-wrap items-center pt-32">
           <div class="w-full md:w-6/12 px-4 mr-auto ml-auto mt-32">
             <div class="justify-center flex flex-wrap relative">
@@ -547,125 +432,51 @@
           </div>
         </div>
       </div>
-
-      <div class="justify-center text-center flex flex-wrap mt-24">
-        <div class="w-full md:w-6/12 px-12 md:px-4">
-          <h2 class="font-semibold text-4xl">Beautiful Example Pages</h2>
-          <p class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500">
-            Vue Notus is a completly new product built using our past experience
-            in web templates. Take the examples we made for you and start
-            playing with them.
-          </p>
-        </div>
-      </div>
     </section>
-
-    <section class="block relative z-1 bg-blueGray-600">
-      <div class="container mx-auto">
-        <div class="justify-center flex flex-wrap">
-          <div class="w-full lg:w-12/12 px-4 -mt-24">
-            <div class="flex flex-wrap">
-              <div class="w-full lg:w-4/12 px-4">
-                <h5 class="text-xl font-semibold pb-4 text-center">
-                  Login Page
-                </h5>
-                <router-link to="/auth/login">
-                  <div
-                    class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-                  >
-                    <img
-                      alt="..."
-                      class="align-middle border-none max-w-full h-auto rounded-lg"
-                      :src="login"
-                    />
-                  </div>
-                </router-link>
-              </div>
-
-              <div class="w-full lg:w-4/12 px-4">
-                <h5 class="text-xl font-semibold pb-4 text-center">
-                  Profile Page
-                </h5>
-                <router-link to="/profile">
-                  <div
-                    class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-                  >
-                    <img
-                      alt="..."
-                      class="align-middle border-none max-w-full h-auto rounded-lg"
-                      :src="profile"
-                    />
-                  </div>
-                </router-link>
-              </div>
-
-              <div class="w-full lg:w-4/12 px-4">
-                <h5 class="text-xl font-semibold pb-4 text-center">
-                  Landing Page
-                </h5>
-                <router-link to="/landing">
-                  <div
-                    class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
-                  >
-                    <img
-                      alt="..."
-                      class="align-middle border-none max-w-full h-auto rounded-lg"
-                      :src="landing"
-                    />
-                  </div>
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-20 bg-blueGray-600 overflow-hidden">
+    <!-- NO SE PERMITE DESCARGA DE LIBROS -->
+    <section class="py-6 bg-blueGray-600 overflow-hidden">
       <div class="container mx-auto pb-64">
         <div class="flex flex-wrap justify-center">
-          <div class="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
+          <div class="w-full md:w-8/12 px-6 md:px-4 ml-auto mr-auto md:mt-32">
             <div
-              class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
+              class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-4 shadow-lg rounded-full bg-white"
             >
-              <i class="fas fa-code-branch text-xl"></i>
+              <i class="fas fa-book text-xl"></i>
             </div>
             <h3 class="text-3xl mb-2 font-semibold leading-normal text-white">
-              Open Source
+              Solo lectura
             </h3>
             <p
               class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-400"
             >
-              Since
+              Lectura de libros en línea. No se permite la descarga de los
+              libros.
               <a
-                href="https://tailwindcss.com/?ref=creativetim"
+                href="https://www.urp.edu.pe/bvi/"
                 class="text-blueGray-300"
                 target="_blank"
               >
-                Tailwind CSS
+                Biblioteca Virtual de Ingeniería - URP
               </a>
-              is an open source project we wanted to continue this movement too.
-              You can give this version a try to feel the design and also test
-              the quality of the code!
+              proporciona el acceso a los libros promoviéndo la lectura y
+              contribuyendo a la educación.
             </p>
             <p
               class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-400"
             >
-              Get it free on Github and please help us spread the news with a
-              Star!
+              No apoyamos la piratería. Si te gusta un libro, apoya a los
+              autores comprando una copia.
             </p>
             <a
-              href="https://github.com/creativetimofficial/vue-notus?ref=vn-index"
-              target="_blank"
+              href="#"
               class="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
             >
-              Github Star
+              Leer libros!
             </a>
           </div>
-
-          <div class="w-full md:w-4/12 px-4 mr-auto ml-auto mt-32 relative">
+          <div class="w-full md:w-4/12 px-4 mr-auto ml-auto mt-24 relative">
             <i
-              class="fab fa-github text-blueGray-700 text-55 absolute -top-150-px -right-100 left-auto opacity-80"
+              class="fas fa-lock text-blueGray-800 text-55 absolute -top-150-px -right-100 left-auto opacity-80"
             ></i>
           </div>
         </div>
@@ -702,31 +513,64 @@
               <span role="img" aria-label="love"> 😍 </span>
             </p>
             <h3 class="font-semibold text-3xl">
-              Do you love this Starter Kit?
+              Te gustaría que agreguemos un libro a la biblioteca?
             </h3>
             <p class="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
-              Cause if you do, it can be yours now. Hit the buttons below to
-              navigate to get the Free version for your next project. Build a
-              new web app or give an old project a new look!
+              Envíanos un mensaje con el nombre del libro y el enlace de
+              descarga. Nosotros nos encargaremos de agregarlo a la biblioteca.
             </p>
             <div class="sm:block flex flex-col mt-10">
-              <a
-                href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus?ref=vn-index"
-                target="_blank"
-                class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-2 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-              >
-                Get started
-              </a>
-              <a
-                href="https://github.com/creativetimofficial/vue-notus?ref=vn-index"
-                target="_blank"
-                class="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-              >
-                <i class="fab fa-github text-lg mr-1"></i>
-                <span>Help With a Star</span>
-              </a>
+              <div class="relative w-full mb-3 mt-8">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="book-name"
+                >
+                  Nombre del libro
+                </label>
+                <input
+                  type="text"
+                  class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Book Name"
+                />
+              </div>
+
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="link"
+                >
+                  Enlace
+                </label>
+                <input
+                  type="text"
+                  class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Enlance"
+                />
+              </div>
+
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="message"
+                >
+                  Mensaje
+                </label>
+                <textarea
+                  rows="4"
+                  cols="80"
+                  class="border-1 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                  placeholder="Type a message..."
+                />
+              </div>
+              <div class="text-center mt-6">
+                <button
+                  class="github-star sm:ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                  type="button"
+                >
+                  Enviar petición!
+                </button>
+              </div>
             </div>
-            <div class="text-center mt-16"></div>
           </div>
         </div>
       </div>
@@ -753,6 +597,7 @@ import landing from "@/assets/img/landing.jpg";
 export default {
   data() {
     return {
+      showModal: false,
       patternVue,
       componentBtn,
       componentProfileCard,
@@ -769,6 +614,14 @@ export default {
   components: {
     IndexNavbar,
     FooterComponent,
+  },
+  methods: {
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
   },
 };
 </script>
