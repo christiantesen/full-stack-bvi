@@ -41,16 +41,16 @@
         id="example-navbar-warning"
       >
         <!-- INICIO BUSCADOR -->
-        <div class="lg:flex flex-grow items-stretch">
+        <div class="flex flex-col lg:flex-row list-none lg:ml-auto">
           <span
-            class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"
+            class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-2"
           >
             <i class="fas fa-search"></i>
           </span>
           <input
             type="text"
             placeholder="Buscar..."
-            class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pl-10"
+            class="px-3 py-2 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pl-10"
           />
         </div>
         <!-- FIN BUSCADOR -->
@@ -60,7 +60,7 @@
           <li class="flex items-center">
             <index-dropdown />
           </li>
-          <!-- INICIAR SESIÓN -->
+          <!-- INICIAR SESIÓN --
           <li class="flex items-center">
             <button
               @click="redirectToLogin"
@@ -69,7 +69,7 @@
             >
               <i class="fas fa-right-to-bracket"></i> Iniciar Sesión
             </button>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
