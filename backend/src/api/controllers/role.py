@@ -4,9 +4,7 @@ from src.core.models.role_permission import RolePermission as role_permission_mo
 from src.api.schemas.role import CreateRole, UpdateRole
 from fastapi import HTTPException, status
 from src.utils.logger import hyre, MSG_INTERNAL_SERVER_ERROR
-from sqlalchemy.orm import selectinload
-
-CACHE_ROLES = []
+from . import CACHE_ROLES
 
 #! INTERNALS
 

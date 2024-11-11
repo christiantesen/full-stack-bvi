@@ -1,4 +1,4 @@
-from pydantic import model_validator
+from pydantic import model_validator, HttpUrl, ValidationError
 from typing import Any, Optional
 from fastapi import HTTPException, status
 
@@ -9,7 +9,7 @@ from . import char_validator
 class Career(base_model_config.BaseRequest):
     code: str
     name: str
-    description: str = None
+    description: str
     url_image: Optional[str] = None
     url_video: Optional[str] = None
     url_web: Optional[str] = None
@@ -22,10 +22,39 @@ class Career(base_model_config.BaseRequest):
         code = self.code.strip()
         name = self.name.strip()
         description = self.description.strip()
+        url_image = self.url_image.strip() if self.url_image else None
+        url_video = self.url_video.strip() if self.url_video else None
+        url_web = self.url_web.strip() if self.url_web else None
+        
+        # Validación de URLs usando HttpUrl
+        def validate_url(url: str, field_name: str) -> None:
+            try:
+                HttpUrl(url)  # Valida creando una instancia de HttpUrl
+            except ValidationError:
+                errors.append(f"La URL del {field_name} no tiene un formato válido.")
+        
+        if url_image:
+            if len(url_image) > 500:
+                errors.append("La URL de la imagen no debe exceder los 500 caracteres.")
+            url_image = url_image.strip()
+            validate_url(url_image, "imagen")
+        
+        if url_video:
+            if len(url_video) > 500:
+                errors.append("La URL del video no debe exceder los 500 caracteres.")
+            url_video = url_video.strip()
+            validate_url(url_video, "video")
+        
+        if url_web:
+            if len(url_web) > 500:
+                errors.append("La URL de la página web no debe exceder los 500 caracteres.")
+            url_web = url_web.strip()
+            validate_url(url_web, "web")
+            
         
         # Validar longitud del código
-        if len(code) < 3 or len(code) > 50:
-            errors.append("El código debe tener entre 3 y 50 caracteres.")
+        if len(code) < 1 or len(code) > 10:
+            errors.append("El código debe tener entre 1 y 10 caracteres.")
             
         # Filtrar caracteres no permitidos en el código
         chars_not_permitted = [
@@ -51,6 +80,12 @@ class Career(base_model_config.BaseRequest):
             if chars_not_permitted:
                 errors.append("Los siguientes caracteres no están permitidos en la descripción: {x}".format(
                     x=', '.join(chars_not_permitted)))
+        if description and len(description) < 3:
+            errors.append("La descripción debe tener al menos 3 caracteres.")
+        if description and len(description) > 500:
+            errors.append("La descripción no debe exceder los 500 caracteres.")
+        if not description:
+            errors.append("La descripción es obligatoria.")
                 
         # Lanzar excepciones si hay errores
         if errors:

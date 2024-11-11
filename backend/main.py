@@ -52,14 +52,9 @@ async def health():
     raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Service Offline 🔴")
 
 #! ROUTERS
-from src.core.models.career import Career
-from src.core.models.role import Role
-from src.core.models.user import User
-from src.core.models.role_permission import RolePermission
-from src.core.models.token import Token
+from src.api.routers import role, career, user, module, auth
 
-from src.api.routers import role, career, user, module
-
+app.include_router(auth.rtr_auth)
 app.include_router(module.rtr_module)
 app.include_router(role.rtr_role)
 app.include_router(career.rtr_career)

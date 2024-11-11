@@ -30,6 +30,8 @@ class Role(base_model_config.BaseRequest):
 
         # Filtrar caracteres no permitidos en la descripción si no está vacía
         if description:
+            if len(description) > 500:
+                errors.append("La descripción no debe exceder los 500 caracteres.")
             chars_not_permitted = [
                 char for char in description if char in char_validator.FORBIDDEN_CHARS]
             chars_not_permitted = list(set(chars_not_permitted))

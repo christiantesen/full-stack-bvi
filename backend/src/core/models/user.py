@@ -10,12 +10,12 @@ class User(Base):
     
     id: int = Column(Integer, primary_key=True, index=True, autoincrement=True)
     
-    username: str = Column(String(150), unique=True, index=True)
-    password: str = Column(String(150))
+    username: str = Column(String(15), unique=True, index=True)
+    password: str = Column(Text)
     
-    full_name: str = Column(String(200)) # Nombre completo
-    paternal_name: str = Column(String(80)) # Apellido paterno
-    maternal_name: str = Column(String(80)) # Apellido materno
+    full_name: str = Column(String(50)) # Nombre completo
+    paternal_name: str = Column(String(30)) # Apellido paterno
+    maternal_name: str = Column(String(30)) # Apellido materno
     email: str = Column(String(255), unique=True, index=True)
     phone: str = Column(String(15), unique=True, index=True)
     sex: str = Column(String(1)) # M: Masculino, F: Femenino

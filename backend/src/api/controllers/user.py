@@ -2,12 +2,21 @@ from src.core.models.user import User as user_model
 from src.api.schemas.user import CreateUser, UpdateUser
 from fastapi import HTTPException, status
 from src.utils.logger import hyre, MSG_INTERNAL_SERVER_ERROR
+from src.security.pwd import PasswordManager
+from src.api.controllers.role import get_by_id as get_role_by_id
+from src.api.controllers.career import get_by_id as get_career_by_id
+
+pm = PasswordManager()
+
 
 def get_all(db):
     try:
-        users_db = db.query(user_model).all()
+        users = db.query(user_model).all()
+        for user in users:
+            user.role = get_role_by_id(db, user.role_id)
+            user.career = get_career_by_id(db, user.career_id) if user.career_id else None
         hyre.success("Users retrieved successfully")
-        return users_db
+        return users
     except HTTPException as e:
         hyre.error(f"{e.detail}")
         raise e
@@ -21,6 +30,7 @@ def get_all(db):
             }
         )
 
+
 def get_by_id(db, id: int):
     try:
         user = db.query(user_model).filter(user_model.id == id).first()
@@ -32,6 +42,8 @@ def get_by_id(db, id: int):
                     "errors": ["Usuario no encontrado."]
                 }
             )
+        user.role = get_role_by_id(db, user.role_id)
+        user.career = get_career_by_id(db, user.career_id) if user.career_id else None
         hyre.success("User retrieved from database")
         return user
     except HTTPException as e:
@@ -47,6 +59,7 @@ def get_by_id(db, id: int):
             }
         )
 
+
 def username_exists(db, username: str, id: int = None) -> bool:
     try:
         user = None
@@ -54,7 +67,8 @@ def username_exists(db, username: str, id: int = None) -> bool:
             user = db.query(user_model).filter(
                 user_model.username == username, user_model.id != id).first()
         else:
-            user = db.query(user_model).filter(user_model.username == username).first()
+            user = db.query(user_model).filter(
+                user_model.username == username).first()
         if user:
             hyre.warning("Username exists")
             return True
@@ -73,19 +87,75 @@ def username_exists(db, username: str, id: int = None) -> bool:
             }
         )
 
-def create(db, user: CreateUser):
+
+def create_1_2(db, user: CreateUser):
+    if username_exists(db, user.username):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "msg": "🔴 Error de validación.",
+                "errors": ["El nombre de usuario ya existe."]
+            }
+        )
     try:
-        if username_exists(db, user.username):
+        if user.role_id not in [1, 2]:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail={
                     "msg": "🔴 Error de validación.",
-                    "errors": ["El nombre de usuario ya existe."]
+                    "errors": ["El rol de usuario no es válido."]
                 }
             )
         new_user = user_model(
             username=user.username,
-            password=user.password,  # En producción, encriptar la contraseña antes de almacenarla
+            password=pm.hash_password(user.password),
+            full_name=user.full_name,
+            paternal_name=user.paternal_name,
+            maternal_name=user.maternal_name,
+            email=user.email,
+            phone=user.phone,
+            career_id=user.career_id,
+            role_id=user.role_id
+        )
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        hyre.success("User created successfully")
+        return new_user
+    except HTTPException as e:
+        hyre.error(f"{e.detail}")
+        raise e
+    except Exception as e:
+        hyre.critical(f"{str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "msg": MSG_INTERNAL_SERVER_ERROR,
+                "errors": []
+            }
+        )
+        
+def create_3_4(db, user: CreateUser):
+    if username_exists(db, user.username):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "msg": "🔴 Error de validación.",
+                "errors": ["El nombre de usuario ya existe."]
+            }
+        )
+    try:
+        if user.role_id not in [3, 4]:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail={
+                    "msg": "🔴 Error de validación.",
+                    "errors": ["El rol de usuario no es válido."]
+                }
+            )
+        new_user = user_model(
+            username=user.username,
+            password=pm.hash_password(user.password),
             full_name=user.full_name,
             paternal_name=user.paternal_name,
             maternal_name=user.maternal_name,
@@ -112,6 +182,7 @@ def create(db, user: CreateUser):
             }
         )
 
+
 def update(db, id: int, user: UpdateUser):
     try:
         if username_exists(db, user.username, id):
@@ -122,7 +193,7 @@ def update(db, id: int, user: UpdateUser):
                     "errors": ["El nombre de usuario ya existe."]
                 }
             )
-            
+
         user = db.query(user_model).filter(user_model.id == id).first()
         if not user:
             raise HTTPException(
@@ -132,7 +203,6 @@ def update(db, id: int, user: UpdateUser):
                     "errors": ["Usuario no encontrado."]
                 }
             )
-        user.username = user.username if not user.username else user.username
         user.password = user.password if not user.password else user.password
         user.full_name = user.full_name if not user.full_name else user.full_name
         user.paternal_name = user.paternal_name if not user.paternal_name else user.paternal_name

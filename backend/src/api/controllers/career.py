@@ -2,8 +2,7 @@ from src.core.models.career import Career as career_model
 from src.api.schemas.career import CreateCareer, UpdateCareer
 from fastapi import HTTPException, status
 from src.utils.logger import hyre, MSG_INTERNAL_SERVER_ERROR
-
-CACHE_CAREERS = []
+from . import CACHE_CAREERS
 
 def get_all(db):
     global CACHE_CAREERS

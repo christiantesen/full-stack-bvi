@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Text
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text
 from datetime import datetime
-from sqlalchemy.orm import relationship, mapped_column
 from src.core.connection import Base
 
 from . import dt_utils

@@ -4,8 +4,7 @@ from src.core.models.permission import Permission as permission_model
 from src.api.schemas.permission import CreatePermission, UpdatePermission
 from fastapi import HTTPException, status
 from src.utils.logger import hyre, MSG_INTERNAL_SERVER_ERROR
-
-CACHE_MODULES = []
+from . import CACHE_MODULES
 
 #! INTERNAL
 def internal_get_by_id_permission(db, id: int):

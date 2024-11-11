@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session
 from datetime import timedelta
 from src.core.settings import get_settings
 from fastapi import HTTPException, status
-from src import utils, core
+from src.core.models import token as token_model
+from src.utils import LoggerConfig, DateTimeUtils
 
 class TokenManager:
     """
@@ -16,10 +17,10 @@ class TokenManager:
     def __init__(self):
         self.settings = get_settings()
         self.cache_tokens = []
-        self.logger_config = utils.LoggerConfig()
+        self.logger_config = LoggerConfig
         self.hyre = self.logger_config.get_logger()
-        self.token_model = core.models.Token
-        self.dt_util = utils.DateTimeUtils()
+        self.token_model = token_model
+        self.dt_util = DateTimeUtils
 
     def str_encode(self, string: str) -> str:
         """Codifica una cadena en Base85."""
