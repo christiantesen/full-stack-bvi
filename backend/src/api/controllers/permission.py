@@ -3,6 +3,20 @@ from src.api.schemas.permission import CreatePermission, UpdatePermission
 from fastapi import HTTPException, status
 from src.utils.logger import hyre, MSG_INTERNAL_SERVER_ERROR
 
+def get_all(db):
+    try:
+        permissions = db.query(permission_model).all()
+        return permissions
+    except Exception as e:
+        hyre.critical(f"{str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "msg": MSG_INTERNAL_SERVER_ERROR,
+                "errors": []
+            }
+        )
+
 def get_by_id(db, id: int):
     try:
         permission = db.query(permission_model).filter(permission_model.id == id).first()

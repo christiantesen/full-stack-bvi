@@ -4,8 +4,11 @@ from sqlalchemy.exc import SQLAlchemyError
 from typing import Generator, List
 from sqlalchemy.orm import Session
 import json
-from backend.src.utils.logger import LoggerConfig
-from backend.src.core.settings import get_settings
+from src.utils.logger import LoggerConfig
+from src.core.settings import get_settings
+
+# Declarar Base fuera de la clase para ser usada en los modelos
+Base = declarative_base()
 
 class DatabaseManager:
     def __init__(self):
@@ -21,7 +24,7 @@ class DatabaseManager:
         )
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.ScopedSession = scoped_session(self.SessionLocal)
-        Base = declarative_base()
+        self.Base = Base
         self.status_api = None  # Estado de la API
 
     def get_db(self) -> Generator:
@@ -36,16 +39,14 @@ class DatabaseManager:
             db.close()  # Cerrar la sesión
 
     async def startup(self):
-        """Inicia la API."""
+        """Inicia la API."""  
         global status_api
         self.hyre.info("🛑 Loading API 🛑")
         inspector = inspect(self.engine)
+        #self.drop_tables() # Eliminar en producción 
         tables = inspector.get_table_names()
         if not tables:
             self.create_tables()
-        else:
-            self.drop_tables()
-            await self.startup()
         await self.default_data()
         self.hyre.success("🆗 API started 🆗")
         self.status_api = True
@@ -133,7 +134,7 @@ class DatabaseManager:
         try:
             db.bulk_insert_mappings(model, data)  # Inserta los datos en bloques
             db.commit()  # Confirma la transacción
-            self.hyre.success("Datos insertados correctamente.")
+            self.hyre.success(f"Datos insertados correctamente en {model.__tablename__}")
         except SQLAlchemyError as e:
             db.rollback()  # En caso de error, deshace la transacción
             self.hyre.critical(f"Database error occurred: {e}")

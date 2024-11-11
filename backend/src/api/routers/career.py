@@ -2,8 +2,10 @@ from fastapi import APIRouter, Depends, status
 from typing import List
 from src.api.schemas.career import MsgCareerResponse, CareerResponse, CreateCareer, UpdateCareer
 from sqlalchemy.orm import Session
-from src.core.connection import get_db
 from src.api.controllers.career import get_all, get_by_id, create, update
+from src.core.connection import DatabaseManager
+
+db_manager = DatabaseManager()
 
 rtr_career = APIRouter(
     prefix="/career",
@@ -11,7 +13,7 @@ rtr_career = APIRouter(
 )
 
 @rtr_career.post("/career", response_model=MsgCareerResponse, status_code=status.HTTP_201_CREATED, name="Career - Create 🆗")
-async def c(career: CreateCareer, db: Session = Depends(get_db)):
+async def c(career: CreateCareer, db: Session = Depends(db_manager.get_db)):
     """
     Se crea una nueva carrera.
     """
@@ -29,7 +31,7 @@ async def c(career: CreateCareer, db: Session = Depends(get_db)):
     return MsgCareerResponse(msg="✅ La Carrera se ha creado exitosamente.", data=data)
 
 @rtr_career.get("/careers", response_model=List[CareerResponse], status_code=status.HTTP_200_OK, name="Careers - Get All 🆗")
-async def r_all(db: Session = Depends(get_db)):
+async def r_all(db: Session = Depends(db_manager.get_db)):
     """
     Se obtienen todas las carreras del sistema.
     """
@@ -50,7 +52,7 @@ async def r_all(db: Session = Depends(get_db)):
     return data
 
 @rtr_career.get("/career/{id}", response_model=MsgCareerResponse, status_code=status.HTTP_200_OK, name="Career - Get By ID 🆗")
-async def r(id: int, db: Session = Depends(get_db)):
+async def r(id: int, db: Session = Depends(db_manager.get_db)):
     """
     Se obtiene una carrera por su ID.
     """
@@ -68,7 +70,7 @@ async def r(id: int, db: Session = Depends(get_db)):
     return MsgCareerResponse(msg="✅ La Carrera se ha obtenido exitosamente.", data=data)
 
 @rtr_career.put("/career/{id}", response_model=MsgCareerResponse, status_code=status.HTTP_200_OK, name="Career - Update 🆗")
-async def u(id: int, career: UpdateCareer, db: Session = Depends(get_db)):
+async def u(id: int, career: UpdateCareer, db: Session = Depends(db_manager.get_db)):
     """
     Se actualiza una carrera por su ID.
     """

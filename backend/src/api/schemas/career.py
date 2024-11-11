@@ -1,11 +1,12 @@
-from src.utils.base import BaseRequest, BaseResponse
 from pydantic import model_validator
 from typing import Any, Optional
 from fastapi import HTTPException, status
-from src.utils.characteres import FORBIDDEN_CHARS
-from src.utils.out_msg import MsgResponse
 
-class Career(BaseRequest):
+from . import base_model_config
+from . import MsgResponse as msg_response
+from . import char_validator
+
+class Career(base_model_config.BaseRequest):
     code: str
     name: str
     description: str = None
@@ -28,7 +29,7 @@ class Career(BaseRequest):
             
         # Filtrar caracteres no permitidos en el código
         chars_not_permitted = [
-            char for char in code if char in FORBIDDEN_CHARS]
+            char for char in name if char in char_validator.FORBIDDEN_CHARS]
         chars_not_permitted = list(set(chars_not_permitted))
         if chars_not_permitted:
             errors.append("Los siguientes caracteres no están permitidos en el código: {x}".format(
@@ -45,7 +46,7 @@ class Career(BaseRequest):
         # Filtrar caracteres no permitidos en la descripción si no está vacía
         if description:
             chars_not_permitted = [
-                char for char in description if char in FORBIDDEN_CHARS]
+                char for char in description if char in char_validator.FORBIDDEN_CHARS]
             chars_not_permitted = list(set(chars_not_permitted))
             if chars_not_permitted:
                 errors.append("Los siguientes caracteres no están permitidos en la descripción: {x}".format(
@@ -94,7 +95,7 @@ class UpdateCareer(Career):
             }
         }
         
-class CareerResponse(BaseResponse):
+class CareerResponse(base_model_config.BaseResponse):
     id: int
     code: str
     name: str
@@ -118,7 +119,7 @@ class CareerResponse(BaseResponse):
             }
         }
         
-class MsgCareerResponse(MsgResponse):
+class MsgCareerResponse(msg_response):
     data: CareerResponse
     
     class Config:

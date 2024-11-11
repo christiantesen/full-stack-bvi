@@ -1,10 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, Text
 from sqlalchemy.orm import relationship, mapped_column
+from src.core.connection import Base
 
-from . import db_manager
-
-class Career(db_manager.Base):
-
+class Career(Base):
     __tablename__ = "careers"
     
     id: int = Column(Integer, primary_key=True, index=True, unique=True, autoincrement=True)
@@ -18,5 +16,3 @@ class Career(db_manager.Base):
     url_web: str = Column(String(300), nullable=True)
     
     is_active: bool = Column(Boolean, default=True)
-    
-    users = relationship("User", back_populates="career")

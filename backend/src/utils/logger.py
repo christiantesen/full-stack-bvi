@@ -36,6 +36,8 @@ class LoggerConfig:
 logger_config = LoggerConfig()
 hyre = logger_config.get_logger()
 
+MSG_INTERNAL_SERVER_ERROR = logger_config.MSG_INTERNAL_SERVER_ERROR
+
 # Ejemplo de uso
 if __name__ == "__main__":
     hyre.success("Logger configurado exitosamente")

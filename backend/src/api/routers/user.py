@@ -2,8 +2,10 @@ from fastapi import APIRouter, Depends, status
 from typing import List
 from src.api.schemas.user import MsgUserResponse, UserResponse, CreateUser, UpdateUser
 from sqlalchemy.orm import Session
-from src.core.connection import get_db
 from src.api.controllers.user import get_all, get_by_id, create, update
+from src.core.connection import DatabaseManager
+
+db_manager = DatabaseManager()
 
 rtr_user = APIRouter(
     prefix="/user",
@@ -11,7 +13,7 @@ rtr_user = APIRouter(
 )
 
 @rtr_user.post("/user", response_model=MsgUserResponse, status_code=status.HTTP_201_CREATED, name="User - Create 🆗")
-async def c(user: CreateUser, db: Session = Depends(get_db)):
+async def c(user: CreateUser, db: Session = Depends(db_manager.get_db)):
     """
     Se crea un nuevo usuario.
     """
@@ -32,7 +34,7 @@ async def c(user: CreateUser, db: Session = Depends(get_db)):
     return MsgUserResponse(msg="✅ El Usuario se ha creado exitosamente.", data=data)
 
 @rtr_user.get("/users", response_model=List[UserResponse], status_code=status.HTTP_200_OK, name="Users - Get All 🆗")
-async def r_all(db: Session = Depends(get_db)):
+async def r_all(db: Session = Depends(db_manager.get_db)):
     """
     Se obtienen todos los usuarios del sistema.
     """
@@ -56,7 +58,7 @@ async def r_all(db: Session = Depends(get_db)):
     return data
 
 @rtr_user.get("/user/{id}", response_model=MsgUserResponse, status_code=status.HTTP_200_OK, name="User - Get By ID 🆗")
-async def r(id: int, db: Session = Depends(get_db)):
+async def r(id: int, db: Session = Depends(db_manager.get_db)):
     """
     Se obtiene un usuario por su ID.
     """
@@ -77,7 +79,7 @@ async def r(id: int, db: Session = Depends(get_db)):
     return MsgUserResponse(msg="✅ Usuario encontrado.", data=data)
 
 @rtr_user.put("/user/{id}", response_model=MsgUserResponse, status_code=status.HTTP_200_OK, name="User - Update 🆗")
-async def u(id: int, user: UpdateUser, db: Session = Depends(get_db)):
+async def u(id: int, user: UpdateUser, db: Session = Depends(db_manager.get_db)):
     """
     Se actualiza un usuario por su ID.
     """

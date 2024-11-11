@@ -4,8 +4,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
-from backend.src.core.connection import DatabaseManager#startup, shutdown, get_db, get_status_api
-from backend.src.core.settings import get_settings
+from src.core.connection import DatabaseManager#startup, shutdown, get_db, get_status_api
+from src.core.settings import get_settings
 
 settings = get_settings()
 db_manager = DatabaseManager()
@@ -34,8 +34,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/static", StaticFiles(directory="backend/src/core/static"), name="static")
-templates = Jinja2Templates(directory="backend/src/core/templates")
+app.mount("/static", StaticFiles(directory="src/core/static"), name="static")
+templates = Jinja2Templates(directory="src/core/templates")
 
 app.add_event_handler("startup", db_manager.startup)
 app.add_event_handler("shutdown", db_manager.shutdown)
@@ -52,8 +52,15 @@ async def health():
     raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Service Offline 🔴")
 
 #! ROUTERS
-from backend.src.api.routers import role, career, user
+from src.core.models.career import Career
+from src.core.models.role import Role
+from src.core.models.user import User
+from src.core.models.role_permission import RolePermission
+from src.core.models.token import Token
 
+from src.api.routers import role, career, user, module
+
+app.include_router(module.rtr_module)
 app.include_router(role.rtr_role)
 app.include_router(career.rtr_career)
 app.include_router(user.rtr_user)

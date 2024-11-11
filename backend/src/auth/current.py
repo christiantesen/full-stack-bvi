@@ -29,7 +29,7 @@ def current_user(db: Session, token: str = Depends(oauth2_scheme)):
         
     # Verificar si el rol del usuario está activo
     if not user.role.is_active:
-        hyre.warning("Role is disabled.")
+        hyre.warning("Role is disabled.") 
         errors.append("El tipo de usuario está deshabilitado.")
 
     # Lanzar excepciones si hay errores

@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
 from datetime import datetime
-from sqlalchemy.orm import relationship, mapped_column
+from sqlalchemy.orm import relationship, mapped_column, Mapped
+from src.core.connection import Base
 
-from . import db_manager
 from . import dt_utils
 
-class Permission(db_manager.Base):
+class Permission(Base):
     
     __tablename__ = "permissions"
     
@@ -18,6 +18,5 @@ class Permission(db_manager.Base):
     updated_at: datetime = Column(DateTime, nullable=True,
                         default=None, onupdate=dt_utils.default_datetime())
     
-    module_id: int = mapped_column(ForeignKey("modules.id"))
-    
+    module_id: Mapped[int] = mapped_column(ForeignKey("modules.id"))
     module = relationship("Module", foreign_keys=[module_id])

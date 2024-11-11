@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text
 from datetime import datetime
+from src.core.connection import Base
 
-from . import db_manager
 from . import dt_utils
 
-class Module(db_manager.Base):
+class Module(Base):
     
     __tablename__ = "modules"
     

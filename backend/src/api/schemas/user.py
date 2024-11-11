@@ -1,19 +1,22 @@
 from pydantic import model_validator, EmailStr, constr
 from typing import Any, Optional
 from fastapi import HTTPException, status
+from datetime import datetime
 
 from . import base_model_config
-from . import msg_response
+from . import MsgResponse as msg_response
 from . import char_validator
 
 class User(base_model_config.BaseRequest):
     username: str
     password: str
     full_name: str
-    paternal_name: Optional[str] = None
-    maternal_name: Optional[str] = None
+    paternal_name: str
+    maternal_name: str
     email: EmailStr
     phone: Optional[constr(pattern=r'^\+?[0-9\s-]{8,15}$')] = None  # type: ignore # Formato de teléfono internacional
+    sex: str
+    date_of_birth: datetime
     career_id: Optional[int] = None
     role_id: int
 
@@ -40,6 +43,14 @@ class User(base_model_config.BaseRequest):
         # Validaciones para el teléfono
         if self.phone and not self.phone.replace(' ', '').replace('-', '').isdigit():
             errors.append("El teléfono solo puede contener números, espacios y guiones.")
+            
+        # Validaciones para el sexo
+        if self.sex not in ['M', 'F']:
+            errors.append("El sexo solo puede ser 'M' o 'F'.")
+            
+        # Validaciones para la fecha de nacimiento
+        if self.date_of_birth > datetime.now():
+            errors.append("La fecha de nacimiento no puede ser mayor a la fecha actual.")
 
         # Lanzar excepciones si hay errores
         if errors:
@@ -66,6 +77,8 @@ class CreateUser(User):
                 "maternal_name": "Apellido Materno",
                 "email": "usuario@dominio.com",
                 "phone": "+123456789",
+                "sex": "M",
+                "date_of_birth": "2000-01-01",
                 "career_id": 1,
                 "role_id": 2
             }
@@ -85,6 +98,8 @@ class UpdateUser(User):
                 "maternal_name": "Apellido Materno",
                 "email": "usuario@dominio.com",
                 "phone": "+123456789",
+                "sex": "M",
+                "date_of_birth": "2000-01-01",
                 "is_active": False,
                 "is_blocked": True,
                 "career_id": 1,
@@ -115,6 +130,8 @@ class UserResponse(base_model_config.BaseResponse):
                 "maternal_name": "Apellido Materno",
                 "email": "usuario@dominio.com",
                 "phone": "+123456789",
+                "sex": "M",
+                "date_of_birth": "2000-01-01",
                 "is_active": True,
                 "is_blocked": False,
                 "career_id": 1,
@@ -137,6 +154,8 @@ class MsgUserResponse(msg_response):
                     "maternal_name": "Apellido Materno",
                     "email": "usuario@dominio.com",
                     "phone": "+123456789",
+                    "sex": "M",
+                    "date_of_birth": "2000-01-01",
                     "is_active": True,
                     "is_blocked": False,
                     "career_id": 1,

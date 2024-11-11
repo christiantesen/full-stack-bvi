@@ -127,6 +127,7 @@ def career_name_exists(db, name: str, id: int = None) -> bool:
         )
         
 def create(db, career: CreateCareer):
+    global CACHE_CAREERS
     try:
         errors = []
         if career_code_exists(db, career.code):

@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     MYSQL_PASS: str = config("MYSQL_PASSWORD", cast=str, default='secret')
     MYSQL_PORT: int = config("MYSQL_PORT", cast=int, default=3306)
     MYSQL_DB: str = config("MYSQL_DB", cast=str, default='fastapi')
-    DATABASE_URI: str = f"mysql+pymysql://{MYSQL_USER}:{quote_plus(MYSQL_PASS)}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
+    DATABASE_URI: str = f"mysql+pymysql://{MYSQL_USER}:{quote_plus(MYSQL_PASS)}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}?charset=utf8mb4"
 
     # JWT Secret Key
     JWT_SECRET: str = config("JWT_SECRET", cast=str, default="649fb93ef34e4fdf4187709c84d643dd61ce730d91856418fdcf563f895ea40f")

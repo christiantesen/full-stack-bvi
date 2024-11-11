@@ -1,10 +1,11 @@
 from pydantic import model_validator
-from typing import Any, Optional
+from typing import Any, Optional, List
 from fastapi import HTTPException, status
 from datetime import datetime
 
+from .permission import PermissionResponse
 from . import base_model_config
-from . import msg_response
+from . import MsgResponse as msg_response
 from . import char_validator
 
 class Role(base_model_config.BaseRequest):
@@ -81,6 +82,7 @@ class RoleResponse(base_model_config.BaseResponse):
     is_active: bool
     created_at: datetime
     updated_at: Optional[datetime] = None
+    permissions: Optional[List[PermissionResponse]] = []
 
     class Config:
         json_schema_extra = {
@@ -90,7 +92,16 @@ class RoleResponse(base_model_config.BaseResponse):
                 "description": "Descripción del Rol",
                 "is_active": True,
                 "created_at": "2021-01-01T00:00:00",
-                "updated_at": "2021-01-01T00:00:00"
+                "updated_at": "2021-01-01T00:00:00",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Permiso 1",
+                        "description": "Descripción del permiso 1",
+                        "created_at": "2022-01-01T00:00:00",
+                        "updated_at": "2022-01-01T00:00:00"
+                    }
+                ]
             }
         }
 
@@ -108,7 +119,17 @@ class MsgRoleResponse(msg_response):
                     "description": "Descripción del Rol",
                     "is_active": True,
                     "created_at": "2021-01-01T00:00:00",
-                    "updated_at": "2021-01-01T00:00:00"
+                    "updated_at": "2021-01-01T00:00:00",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Permiso 1",
+                        "description": "Descripción del permiso 1",
+                        "created_at": "2022-01-01T00:00:00",
+                        "updated_at": "2022-01-01T00:00:00",
+                        "module_id": 1
+                    }
+                ]
                 }
             }
         }

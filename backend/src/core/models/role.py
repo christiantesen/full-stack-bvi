@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Text
 from datetime import datetime
 from sqlalchemy.orm import relationship, mapped_column
+from src.core.connection import Base
 
-from . import db_manager
 from . import dt_utils
 
-class Role(db_manager.Base):
+class Role(Base):
     
     __tablename__ = "roles"
     
@@ -19,5 +19,3 @@ class Role(db_manager.Base):
     created_at: datetime = Column(DateTime, default=dt_utils.default_datetime())
     updated_at: datetime = Column(DateTime, nullable=True,
                         default=None, onupdate=dt_utils.default_datetime())
-    
-    users = relationship("User", back_populates="role")
