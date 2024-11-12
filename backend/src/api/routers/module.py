@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from src.api.controllers.module import get_all, get_by_id, create, update\
     , create_permission, get_by_id_permission, update_permission
 from src.core.connection import DatabaseManager
+from src.auth.current import current_user, UserResponse
 
 db_manager = DatabaseManager()
 
@@ -16,7 +17,7 @@ rtr_module = APIRouter(
 
 #! MODULOS
 @rtr_module.post("/module", response_model=MsgModuleResponse, status_code=status.HTTP_201_CREATED, name="Module - Create 🆗")
-async def c(module: CreateModule, db: Session = Depends(db_manager.get_db)):
+async def c(module: CreateModule, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se crea un nuevo módulo.
     """
@@ -42,7 +43,7 @@ async def c(module: CreateModule, db: Session = Depends(db_manager.get_db)):
     return MsgModuleResponse(msg="✅ El Módulo se ha creado exitosamente.", data=data)
 
 @rtr_module.get("/modules", response_model=List[ModuleResponse], status_code=status.HTTP_200_OK, name="Modules - Get All 🆗")
-async def r_all(db: Session = Depends(db_manager.get_db)):
+async def r_all(db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se obtienen todos los módulos del sistema.
     """
@@ -71,7 +72,7 @@ async def r_all(db: Session = Depends(db_manager.get_db)):
     return data
 
 @rtr_module.get("/module/{id}", response_model=MsgModuleResponse, status_code=status.HTTP_200_OK, name="Module - Get By ID 🆗")
-async def r(id: int, db: Session = Depends(db_manager.get_db)):
+async def r(id: int, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se obtiene un módulo por su ID.
     """
@@ -97,7 +98,7 @@ async def r(id: int, db: Session = Depends(db_manager.get_db)):
     return MsgModuleResponse(msg="✅ Módulo recuperado exitosamente.", data=data)
 
 @rtr_module.put("/module/{id}", response_model=MsgModuleResponse, status_code=status.HTTP_200_OK, name="Module - Update 🆗")
-async def u(id: int, module: UpdateModule, db: Session = Depends(db_manager.get_db)):
+async def u(id: int, module: UpdateModule, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se actualiza un módulo por su ID.
     """
@@ -124,7 +125,7 @@ async def u(id: int, module: UpdateModule, db: Session = Depends(db_manager.get_
 
 #! PERMISOS
 @rtr_module.post("/module/{id}/permission", response_model=MsgModuleResponse, status_code=status.HTTP_201_CREATED, name="Module[Permission] - Create 🆗")
-async def c_p(id: int, permission: CreatePermission, db: Session = Depends(db_manager.get_db)):
+async def c_p(id: int, permission: CreatePermission, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se crea un nuevo permiso en un módulo.
     """
@@ -150,7 +151,7 @@ async def c_p(id: int, permission: CreatePermission, db: Session = Depends(db_ma
     return MsgModuleResponse(msg="✅ El Permiso se ha creado exitosamente.", data=data)
 
 @rtr_module.get("/module/permission/{id}", response_model=MsgPermissionResponse, status_code=status.HTTP_200_OK, name="Module[Permission] - Get By ID 🆗")
-async def r_all_p(id: int, db: Session = Depends(db_manager.get_db)):
+async def r_all_p(id: int, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se obtienen todos los permisos de un módulo.
     """
@@ -165,7 +166,7 @@ async def r_all_p(id: int, db: Session = Depends(db_manager.get_db)):
     return MsgPermissionResponse(msg="✅ Permiso recuperado exitosamente.", data=res)
 
 @rtr_module.put("/module/permission/{id}", response_model=MsgModuleResponse, status_code=status.HTTP_200_OK, name="Module[Permission] - Update 🆗")
-async def u_p(id: int, permission: UpdatePermission, db: Session = Depends(db_manager.get_db)):
+async def u_p(id: int, permission: UpdatePermission, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se actualiza un permiso por su ID.
     """

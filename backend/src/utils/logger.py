@@ -9,23 +9,22 @@ class LoggerConfig:
     MSG_INTERNAL_SERVER_ERROR = "🔴 Internal Server Error"
 
     def __init__(self):
-        # Definir formatos personalizados para cada nivel
-        logger.level("SUCCESS", color="<green>", icon="✔️")
-        logger.level("INFO", color="<blue>", icon="ℹ️")
-        logger.level("ERROR", color="<red>", icon="❌")
-        logger.level("CRITICAL", color="<bold><red>", icon="🆘")
-
-        # Definir el formato del log
-        log_format = "{level}   {time:YYYY-MM-DD HH:mm:ss} - {message}"
-
         # Eliminar los manejadores existentes para evitar duplicados
         logger.remove()
-
-        # Añadir un manejador para la salida de logs en la consola con el formato global
-        logger.add(sys.stdout, level="DEBUG", format=log_format)
+        # Define custom filters for each log level
+        def level_filter(level):
+            def is_level(record):
+                return record["level"].name == level
+            return is_level
+        # Add handlers with custom formats
+        logger.add(sys.stderr, format="<green>{level}</green>:  ✔️\n{message}", filter=level_filter(level="SUCCESS"))
+        logger.add(sys.stderr, format="<blue>{level}</blue>:     ℹ\n{message}", filter=level_filter(level="INFO"))
+        logger.add(sys.stderr, format="<yellow>{level}</yellow>:  ⚠️\n{message}", filter=level_filter(level="WARNING"))
+        logger.add(sys.stderr, format="<red>{level}</red>:    ❌\n{message}", filter=level_filter(level="ERROR"))
+        logger.add(sys.stderr, format="<bold><red>{level}</red></bold>:  🆘\n{message}", filter=level_filter(level="CRITICAL"))
 
         # Añadir un manejador para la salida de logs en un archivo con rotación
-        logger.add("api.log", rotation="1 MB", level="INFO", format=log_format)
+        logger.add("api.log", rotation="5 MB", level="DEBUG")
 
     @classmethod
     def get_logger(cls):

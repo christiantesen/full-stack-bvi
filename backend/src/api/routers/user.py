@@ -63,61 +63,8 @@ async def c_1_2(user: CreateUser, db: Session = Depends(db_manager.get_db)):
             )
     return MsgUserResponse(msg="✅ El Usuario se ha creado exitosamente.", data=data)
 
-@rtr_user.get("/user/public/me", response_model=MsgUserResponse, status_code=status.HTTP_201_CREATED, name="User[Profile] - Get Me 🆗")
-async def p(db: Session = Depends(db_manager.get_db)):#, c_u: UserResponse = Depends(current_user)):
-    pass#return MsgUserResponse(msg="✅ Perfil.", data=c_u)
-
-@rtr_user.put("/user/public/{id}", response_model=MsgUserResponse, status_code=status.HTTP_200_OK, name="User - Update 🆗")
-async def u_public(id: int, user: UpdateUser, db: Session = Depends(db_manager.get_db)):#, c_u: UserResponse = Depends(current_user)):
-    """
-    Se actualiza un usuario por su ID.
-    """
-    user.role_id = None
-    data = update(db, id, user)
-    data = UserResponse(
-                id=data.id,
-                username=data.username,
-                full_name=data.full_name,
-                paternal_name=data.paternal_name,
-                maternal_name=data.maternal_name,
-                email=data.email,
-                phone=data.phone,
-                is_active=data.is_active,
-                is_blocked=data.is_blocked,
-                career=CareerResponse(
-                    id=data.career.id,
-                    code=data.career.code,
-                    name=data.career.name,
-                    description=data.career.description,
-                    url_image=data.career.url_image,
-                    url_video=data.career.url_video,
-                    url_web=data.career.url_web,
-                    is_active=data.career.is_active
-                ) if data.career else None,
-                role=RoleResponse(
-                    id=data.role.id,
-                    name=data.role.name,
-                    description=data.role.description,
-                    is_active=data.role.is_active,
-                    created_at=data.role.created_at,
-                    updated_at=data.role.updated_at,
-                    permissions=[
-                        PermissionResponse(
-                            id=permission.id,
-                            name=permission.name,
-                            description=permission.description,
-                            created_at=permission.created_at,
-                            updated_at=permission.updated_at
-                        )
-                        for permission in data.role.permissions
-                    ]
-                )
-            )
-    return MsgUserResponse(msg="✅ Usuario actualizado.", data=data)
-
-
-@rtr_user.post("/user/private", response_model=MsgUserResponse, status_code=status.HTTP_201_CREATED, name="User - Create 🆗")
-async def c_3_4(user: CreateUser, db: Session = Depends(db_manager.get_db)):#, c_u: UserResponse = Depends(current_user)):
+@rtr_user.post("/user", response_model=MsgUserResponse, status_code=status.HTTP_201_CREATED, name="User - Create 🆗")
+async def c_3_4(user: CreateUser, db: Session = Depends(db_manager.get_db), c_u: UserResponse = Depends(current_user)):
     """
     Se crea un nuevo usuario. (Docente o Administrativo)
     """
@@ -163,8 +110,8 @@ async def c_3_4(user: CreateUser, db: Session = Depends(db_manager.get_db)):#, c
             )
     return MsgUserResponse(msg="✅ El Usuario se ha creado exitosamente.", data=data)
 
-@rtr_user.get("/users", response_model=List[UserResponse], status_code=status.HTTP_200_OK, name="Users - Get All 🆗")
-async def r_all(db: Session = Depends(db_manager.get_db)):
+@rtr_user.get("/user", response_model=List[UserResponse], status_code=status.HTTP_200_OK, name="Users - Get All 🆗")
+async def r_all(db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se obtienen todos los usuarios del sistema.
     """
@@ -214,7 +161,7 @@ async def r_all(db: Session = Depends(db_manager.get_db)):
     return data
 
 @rtr_user.get("/user/{id}", response_model=MsgUserResponse, status_code=status.HTTP_200_OK, name="User - Get By ID 🆗")
-async def r(id: int, db: Session = Depends(db_manager.get_db)):
+async def r(id: int, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se obtiene un usuario por su ID.
     """
@@ -260,8 +207,12 @@ async def r(id: int, db: Session = Depends(db_manager.get_db)):
             )
     return MsgUserResponse(msg="✅ Usuario encontrado.", data=data)
 
-@rtr_user.put("/user/{id}/private", response_model=MsgUserResponse, status_code=status.HTTP_200_OK, name="User - Update 🆗")
-async def u_private(id: int, user: UpdateUser, db: Session = Depends(db_manager.get_db)):
+@rtr_user.get("/user/me", response_model=MsgUserResponse, status_code=status.HTTP_201_CREATED, name="User[Profile] - Get Me 🆗")
+async def p(db: Session = Depends(db_manager.get_db), c_u: UserResponse = Depends(current_user)):
+    return MsgUserResponse(msg="✅ Perfil.", data=c_u)
+
+@rtr_user.put("/user/{id}", response_model=MsgUserResponse, status_code=status.HTTP_200_OK, name="User - Update 🆗")
+async def u_private(id: int, user: UpdateUser, db: Session = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Se actualiza un usuario por su ID.
     """

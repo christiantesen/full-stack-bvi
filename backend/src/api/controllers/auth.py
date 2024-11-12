@@ -22,17 +22,6 @@ def auth_login(db, data):
                     "errors": ["Usuario no encontrado."]
                 }
             )
-        
-        if not pm.verify_password(data.password, user.password):
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail={
-                    "msg": "🔴 Error de Autenticación",
-                    "errors": ["Contraseña incorrecta."]
-                }
-            )
-        access_token, refresh_token, expires_in_seconds = tm.generate_token(db, user.id)
-        return access_token, refresh_token, expires_in_seconds
     except HTTPException as e:
         hyre.error(f"{e.detail}")
         raise e
@@ -45,6 +34,16 @@ def auth_login(db, data):
                 "errors": []
             }
         )
+    if not pm.verify_password(data.password, user.password):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail={
+                    "msg": "🔴 Error de Autenticación",
+                    "errors": ["Contraseña incorrecta."]
+                }
+            )
+    access_token, refresh_token, expires_in_seconds = tm.generate_token(db, user.id)
+    return access_token, refresh_token, expires_in_seconds
     
 def auth_refresh(db, refresh_token: str):
     try:

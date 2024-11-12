@@ -173,3 +173,35 @@ class MsgCareerResponse(msg_response):
                 }
             }
         }
+        
+class PublicCareerResponse(base_model_config.BaseResponse):
+    id: int
+    code: str
+    name: str
+    description: str
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "id": 1,
+                "code": "Código de la Carrera",
+                "name": "Nombre de la Carrera",
+                "description": "Descripción de la Carrera"
+            }
+        }
+        
+class MsgPublicCareerResponse(msg_response):
+    data: PublicCareerResponse
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "msg": "Mensaje de respuesta",
+                "data": {
+                    "id": 1,
+                    "code": "Código de la Carrera",
+                    "name": "Nombre de la Carrera",
+                    "description": "Descripción de la Carrera"
+                }
+            }
+        }

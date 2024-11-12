@@ -26,7 +26,7 @@ async def login(db = Depends(db_manager.get_db), data: OAuth2PasswordRequestForm
     )
     
 @rtr_auth.post("/refresh", response_model=AuthResponse, status_code=status.HTTP_200_OK, name="Auth - Refresh")
-async def refresh(refresh_token: str, db = Depends(db_manager.get_db)):
+async def refresh(refresh_token: str, db = Depends(db_manager.get_db), current_user: UserResponse = Depends(current_user)):
     """
     Refrescar token
     """
