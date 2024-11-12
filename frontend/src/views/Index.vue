@@ -11,7 +11,7 @@
               Biblioteca Virtual de Ingeniería - URP
             </h2>
             <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
-              Es un proyecto de la
+              Es una plataforma de la
               <a
                 href="https://www.urp.edu.pe/"
                 class="text-blueGray-600"
@@ -19,12 +19,12 @@
               >
                 Universidad Ricardo Palma
               </a>
-              . Encontrarás libros de todas las especialidades de la ingeniería
+              donde encontrarás libros de todas las especialidades de la ingeniería
               y ciencias básicas. ¡Disfruta de la lectura!
             </p>
             <div class="mt-12">
               <a
-                href="/register"
+                href="/auth/register"
                 class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
               >
                 REGISTRARSE

@@ -12,7 +12,8 @@
           <li class="flex items-center">
             <a
               class="hover:text-blueGray-500 text-blueGray-700 px-3 py-2 flex items-center text-xs uppercase font-bold"
-              href="https://www.urp.edu.pe/pregrado/facultad-de-ingenieria/bvi/"
+              href="https://www.urp.edu.pe/bvi/"
+              target="_blank"
             >
               <i
                 class="text-blueGray-400 fas fa-house text-lg leading-lg mr-2"
@@ -21,7 +22,7 @@
             </a>
             <a
               class="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-              href="#Hyre"
+              href="/"
             >
               Estantería Virtual
             </a>
@@ -60,7 +61,7 @@
           <li class="flex items-center">
             <index-dropdown />
           </li>
-          <!-- INICIAR SESIÓN --
+          <!-- INICIAR SESIÓN -->
           <li class="flex items-center">
             <button
               @click="redirectToLogin"
@@ -69,7 +70,7 @@
             >
               <i class="fas fa-right-to-bracket"></i> Iniciar Sesión
             </button>
-          </li>-->
+          </li>
         </ul>
       </div>
     </div>
